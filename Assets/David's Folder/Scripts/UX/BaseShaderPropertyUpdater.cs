@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class BaseShaderPropertyUpdater : MonoBehaviour
 {
-    [SerializeField] protected float trackedFloatValue;
     [SerializeField] protected RendererShaderMapping[] affectedRenderers;
 
     private MaterialPropertyBlock materialPropertyBlock;
@@ -24,12 +23,10 @@ public abstract class BaseShaderPropertyUpdater : MonoBehaviour
         }
     }
 
-    protected virtual void Update()
+    public virtual void UpdateVisual(float value)
     {
-        if (trackedFloatValue == null) return;
-
         // 1. Evaluate the tracked value once per frame
-        EvaluateTrackedValue(trackedFloatValue);
+        EvaluateTrackedValue(value);
 
         // 2. Apply to all renderers
         for (int i = 0; i < affectedRenderers.Length; i++)
