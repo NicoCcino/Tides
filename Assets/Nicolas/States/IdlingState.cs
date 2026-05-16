@@ -9,7 +9,7 @@ public class IdlingState : ASurvivorState
     public override void Enter()
     {
         Debug.Log("Survivor entered idle state");
-        survivorStateManager.ChangeState(ESurvivorState.GoingToBase);
+        survivorStateManager.ChangeState(ESurvivorState.Gathering);
     }
 
     public override void Exit()

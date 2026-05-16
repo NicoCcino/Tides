@@ -1,0 +1,29 @@
+using System;
+using UnityEngine;
+
+public class WoodResource : IResource
+{
+    protected int woodAmount;
+
+    public WoodResource(int amount)
+    {
+        woodAmount = amount;
+    }
+
+    public Action<int> OnAmountChanged { get; set; }
+
+    public void Add(int addedAmount)
+    {
+        woodAmount += addedAmount;
+    }
+
+    public int GetAmount()
+    {
+        return woodAmount;
+    }
+
+    void IResource.SetAmount(int amount)
+    {
+        woodAmount = amount;
+    }
+}
