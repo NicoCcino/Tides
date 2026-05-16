@@ -56,12 +56,13 @@ public class SurvivorsController : Singleton<SurvivorsController>
     {
         List<SurvivorController> idleSurvivors = Survivors.Where(s => s.survivorStateManager.CurrentState == ESurvivorState.Idling).ToList();
 
-        Debug.Log($"Found {idleSurvivors.Count} idle survivors");
+        //Debug.Log($"Found {idleSurvivors.Count} idle survivors");
 
-        if (idleSurvivors.Count == 0)
-        {
-            Debug.Log("No idle survivors found");
-        }
+        // if (idleSurvivors.Count == 0)
+        // {
+        //     //Debug.Log("No idle survivors found");
+        // }
+
         return idleSurvivors;
     }
 

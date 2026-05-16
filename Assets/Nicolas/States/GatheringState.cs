@@ -48,6 +48,7 @@ public class GatheringState : ASurvivorState
     {
         survivorController.animator.SetTrigger("stopGather");
         survivorController.gatherPointBehaviour = null;
+        isGathering = false;
     }
 
     public override void Update()
