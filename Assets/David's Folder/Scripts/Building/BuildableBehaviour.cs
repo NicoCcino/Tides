@@ -13,6 +13,9 @@ public class BuildableBehaviour : MonoBehaviour, IPointerDownHandler
     [SerializeField] private float buildingTime;
     [SerializeField] private ShaderFloatUpdater visualProgressEffect;
     [SerializeField] private GameObject informationsGameObject;
+    [SerializeField] private GameObject buildingControlGameObject;
+
+    [Header("Debug")]
     [SerializeField, Range(0, 1)] private float buildingProgress = 0.0f;
 
     private bool assignedBuilding = false;
@@ -36,11 +39,13 @@ public class BuildableBehaviour : MonoBehaviour, IPointerDownHandler
     {
         buildedGameObject.SetActive(true);
         buildableGameObject.SetActive(false);
+        buildingControlGameObject.SetActive(false);
     }
     public void DestroyBuilding()
     {
         buildedGameObject.SetActive(false);
         buildableGameObject.SetActive(true);
+        buildingControlGameObject.SetActive(true);
         assignedBuilding = false;
         informationsGameObject.SetActive(true);
     }
@@ -48,6 +53,7 @@ public class BuildableBehaviour : MonoBehaviour, IPointerDownHandler
     {
         assignedBuilding = false;
         informationsGameObject.SetActive(true);
+        buildingControlGameObject.SetActive(false);
         ResourcesManager.Instance.AddWood(buildingCost);
         UpdateProgress(0f);
     }
@@ -66,6 +72,7 @@ public class BuildableBehaviour : MonoBehaviour, IPointerDownHandler
         {
             assignedBuilding = true;
             informationsGameObject.SetActive(false);
+            buildingControlGameObject.SetActive(true);
             UpdateProgress(0.0f);
         }
     }
