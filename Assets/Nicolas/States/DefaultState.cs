@@ -2,7 +2,7 @@ using UnityEngine;
 [System.Serializable]
 public class DefaultState : ASurvivorState
 {
-    public DefaultState(Survivor survivor, SurvivorController survivorController, SurvivorStateManager survivorStateManager) : base(survivor, survivorController, survivorStateManager)
+    public DefaultState(SurvivorController survivorController, SurvivorStateManager survivorStateManager) : base(survivorController, survivorStateManager)
     {
     }
 

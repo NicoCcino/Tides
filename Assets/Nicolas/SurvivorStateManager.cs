@@ -6,7 +6,6 @@ using UnityEngine;
 public class SurvivorStateManager : BaseFSM<ESurvivorState, ASurvivorState>
 {
     [SerializeField] public SurvivorController survivorController;
-    [SerializeField] public Survivor survivor;
     [SerializeField] public SurvivorStateManager survivorStateManager;
 
     [Header("States")]
@@ -52,11 +51,11 @@ public class SurvivorStateManager : BaseFSM<ESurvivorState, ASurvivorState>
             // Initialize the state dictionary
             stateDictionary = new Dictionary<ESurvivorState, ASurvivorState>
              {
-                        { ESurvivorState.Default, new DefaultState(survivor, survivorController, survivorStateManager)},
-                        { ESurvivorState.Idling, new IdlingState(survivor, survivorController, survivorStateManager)},
-                        { ESurvivorState.Gathering, new GatheringState(survivor, survivorController, survivorStateManager)},
-                        { ESurvivorState.Building, new BuildingState(survivor, survivorController, survivorStateManager)},
-                        { ESurvivorState.GoingToBase, new GoingToBaseState(survivor, survivorController, survivorStateManager)}
+                        { ESurvivorState.Default, new DefaultState(survivorController, survivorStateManager)},
+                        { ESurvivorState.Idling, new IdlingState(survivorController, survivorStateManager)},
+                        { ESurvivorState.Gathering, new GatheringState(survivorController, survivorStateManager)},
+                        { ESurvivorState.Building, new BuildingState(survivorController, survivorStateManager)},
+                        { ESurvivorState.GoingToBase, new GoingToBaseState(survivorController, survivorStateManager)}
              };
         }
     }

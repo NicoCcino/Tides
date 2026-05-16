@@ -3,13 +3,11 @@ public abstract class ASurvivorState : BaseState
 {
 
     protected SurvivorController survivorController;
-    protected Survivor survivor;
     protected SurvivorStateManager survivorStateManager;
 
 
-    protected ASurvivorState(Survivor survivor, SurvivorController survivorController, SurvivorStateManager survivorStateManager)
+    protected ASurvivorState(SurvivorController survivorController, SurvivorStateManager survivorStateManager)
     {
-        this.survivor = survivor;
         this.survivorController = survivorController;
         this.survivorStateManager = survivorStateManager;
 

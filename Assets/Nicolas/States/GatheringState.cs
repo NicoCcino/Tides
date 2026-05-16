@@ -1,46 +1,53 @@
 using UnityEngine;
 using System.Collections;
+using Tides.Resources;
+using System.Security.AccessControl;
 
 [System.Serializable]
 public class GatheringState : ASurvivorState
 {
-
-    public Vector3 resourcePosition;
+    public GatherPointBehaviour gatherPointBehaviour;
+    // public Vector3 resourcePosition;
+    public ResourceType resourceType;
     public Vector3 basePosition;
-    public string resourceType; // TODO: REPLACE WITH RIGHT DATA
     private float gatherTimer;
     private bool isGathering;
     private float gatherDuration = 5.97f;
     public float gatherDistanceThreshold = 0.5f;
 
 
-    public GatheringState(Survivor survivor, SurvivorController survivorController, SurvivorStateManager survivorStateManager) : base(survivor, survivorController, survivorStateManager)
+    public GatheringState(SurvivorController survivorController, SurvivorStateManager survivorStateManager) : base(survivorController, survivorStateManager)
     {
     }
 
     public override void Enter()
     {
-        Debug.Log("Survivor entered gathering state");
 
         isGathering = false;
         gatherTimer = 0f;
+        gatherPointBehaviour = survivorController.gatherPointBehaviour;
+        resourceType = gatherPointBehaviour.ResourceType;
+
+        Debug.Log("Survivor entered gathering state with target " + gatherPointBehaviour.transform.position);
+
 
         if (survivorController.baseTransform != null)
         {
             basePosition = survivorController.baseTransform.position;
         }
-        if (survivorController.resourceTransform != null)
-        {
-            resourcePosition = survivorController.resourceTransform.position;
-        }
+        //if (survivorController.resourceTransform != null)
+        //{
+        // resourcePosition = survivorController.resourceTransform.position;
+        //}
 
-        survivorController.GoTo(resourcePosition);
+        survivorController.GoTo(gatherPointBehaviour.transform.position);
 
     }
 
     public override void Exit()
     {
         survivorController.animator.SetTrigger("stopGather");
+        survivorController.gatherPointBehaviour = null;
     }
 
     public override void Update()
@@ -51,16 +58,40 @@ public class GatheringState : ASurvivorState
             if (gatherTimer >= gatherDuration)
             {
                 // Create resource in inventory
-                if (survivor.resourceInInventory == null)
+                if (survivorController.resourceInInventory == null)
                 {
-                    survivor.resourceInInventory = new WoodResource(0); // TO DO : Replace with right resource
-                    Debug.Log("setting resourceInInventory");
+                    switch (resourceType)
+                    {
+                        case ResourceType.FOOD:
+                            survivorController.resourceInInventory = new FoodResource(0);
+                            break;
+                        case ResourceType.WOOD:
+                            survivorController.resourceInInventory = new WoodResource(0);
+                            break;
+                        default:
+                            survivorController.resourceInInventory = new FoodResource(0);
+                            break;
+                    }
+                    Debug.Log("Setting up resourceInInventory");
                 }
-                // Add resource
-                survivor.resourceInInventory.Add(1);
+
                 gatherTimer -= gatherDuration;
 
-                if (survivor.resourceInInventory.GetAmount() >= survivor.maxLoad)
+                // Consume resource in gather point
+                if (gatherPointBehaviour.Resource.TryConsume(1))
+                {
+                    Debug.Log("Resource consumed from gather point");
+                    // Add resource
+                    survivorController.resourceInInventory.Add(1);
+                }
+                else
+                {
+                    Debug.Log("No resource left to gather from gather point, returning to base");
+                    // Go back home if deposit is empty
+                    survivorStateManager.ChangeState(ESurvivorState.GoingToBase);
+                }
+
+                if (survivorController.resourceInInventory.GetAmount() >= survivorController.maxLoad)
                 {
                     // Go back home with full load
                     survivorStateManager.ChangeState(ESurvivorState.GoingToBase);
@@ -79,7 +110,7 @@ public class GatheringState : ASurvivorState
 
         if (survivorController.agent.pathPending) return;
 
-        float distance = Vector3.Distance(survivor.transform.position, resourcePosition);
+        float distance = Vector3.Distance(survivorController.transform.position, gatherPointBehaviour.transform.position);
 
         if (distance <= gatherDistanceThreshold)
         {
