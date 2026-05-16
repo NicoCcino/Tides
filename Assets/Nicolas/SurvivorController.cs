@@ -7,7 +7,6 @@ public class SurvivorController : MonoBehaviour
     private Survivor survivor;
     public Animator animator;
     private SurvivorStateManager survivorStateManager;
-    public bool isGathering;
 
     [Header("Animation")]
     private static readonly int SpeedHash = Animator.StringToHash("speed");
@@ -50,12 +49,5 @@ public class SurvivorController : MonoBehaviour
         float currentSpeed = agent.velocity.magnitude;
         float normalizedSpeed = currentSpeed / agent.speed;
         animator.SetFloat(SpeedHash, currentSpeed / agent.speed);
-    }
-
-    public void OnGatherAnimationFinished()
-    {
-        isGathering = false;
-        animator.SetTrigger("stopGather");
-        survivorStateManager.ChangeState(ESurvivorState.GoingToBase);
     }
 }
