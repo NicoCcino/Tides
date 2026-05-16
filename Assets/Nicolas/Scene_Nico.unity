@@ -4157,14 +4157,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Survivor_Casual_Male
       objectReference: {fileID: 0}
-    - target: {fileID: 5146045546645248584, guid: 4ba0aaaade10f32409d8dc1563679802, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: e0aac556d0a72f6408f60ba114f543e5, type: 2}
-    - target: {fileID: 6800113894573620960, guid: 4ba0aaaade10f32409d8dc1563679802, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7676989486109031015, guid: 4ba0aaaade10f32409d8dc1563679802, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.59
@@ -4204,14 +4196,6 @@ PrefabInstance:
     - target: {fileID: 7676989486109031015, guid: 4ba0aaaade10f32409d8dc1563679802, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7876238761093119059, guid: 4ba0aaaade10f32409d8dc1563679802, type: 3}
-      propertyPath: m_Height
-      value: 1.840345
-      objectReference: {fileID: 0}
-    - target: {fileID: 7876238761093119059, guid: 4ba0aaaade10f32409d8dc1563679802, type: 3}
-      propertyPath: m_Center.y
-      value: 0.9559025
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
