@@ -5,9 +5,9 @@ using System.Collections.Generic;
 public class SurvivorsController : Singleton<SurvivorsController>
 {
 
-    public JobManager jobManager;
+    private JobManager jobManager;
 
-    public List<SurvivorController> survivors = new List<SurvivorController>();
+    public List<SurvivorController> Survivors = new List<SurvivorController>();
     public List<SurvivorController> survivorsToRemove = new();
 
 
@@ -37,7 +37,7 @@ public class SurvivorsController : Singleton<SurvivorsController>
     void LateUpdate()
     {
         foreach (var s in survivorsToRemove)
-            survivors.Remove(s);
+            Survivors.Remove(s);
 
         survivorsToRemove.Clear();
     }
@@ -47,26 +47,22 @@ public class SurvivorsController : Singleton<SurvivorsController>
         // Get all objects with Survivor component
         SurvivorController[] foundSurvivors = FindObjectsByType<SurvivorController>();
 
-        survivors = new List<SurvivorController>(foundSurvivors);
+        Survivors = new List<SurvivorController>(foundSurvivors);
 
-        Debug.Log($"Found {survivors.Count} survivors");
+        Debug.Log($"Found {Survivors.Count} survivors");
     }
 
     public List<SurvivorController> GetIdleSurvivors()
     {
-        List<SurvivorController> idleSurvivors = survivors.Where(s => s.survivorStateManager.CurrentState == ESurvivorState.Idling).ToList();
+        List<SurvivorController> idleSurvivors = Survivors.Where(s => s.survivorStateManager.CurrentState == ESurvivorState.Idling).ToList();
 
         Debug.Log($"Found {idleSurvivors.Count} idle survivors");
 
         if (idleSurvivors.Count == 0)
         {
             Debug.Log("No idle survivors found");
-            return null;
         }
-        else
-        {
-            return idleSurvivors;
-        }
+        return idleSurvivors;
     }
 
     SurvivorController AssignJobToClosestIdleSurvivor(IJob job)
@@ -114,7 +110,7 @@ public class SurvivorsController : Singleton<SurvivorsController>
 
     public void AddAgeToAll(int ageToAdd)
     {
-        foreach (var survivor in survivors)
+        foreach (var survivor in Survivors)
         {
             if (survivor == null) continue;
             survivor.AddAge(ageToAdd);

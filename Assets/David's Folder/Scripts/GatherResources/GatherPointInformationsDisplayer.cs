@@ -9,6 +9,6 @@ public class GatherPointInformationsDisplayer : MonoBehaviour
 
     private void Update()
     {
-        textAmount.text = $"{gatherPointBehaviour.ResourceType.ToString()} {gatherPointBehaviour.Resource.GetAmount()}";
+        textAmount.text = $"{gatherPointBehaviour.Resource.GetAmount()}";
     }
 }
