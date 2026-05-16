@@ -9,12 +9,14 @@ public class SetWaveShaderVariables : MonoBehaviour
     public string waveDirectionName = "_WaveDir";
     public string restHeightName = "_RestHeight";
     public string waveHeightName = "_WaveHeight";
+    public string waveGradientWidthName = "_WaveHeight";
     private MaterialPropertyBlock propertyBlock;
     private int wavePosInt;
     private int waveDirInt;
     public MeshRenderer waveRenderer;
     public int restHeight = -3;
     public int waveHeight = 0;
+    public float waveGradientWidth = 5;
 
     private void OnEnable()
     {
@@ -32,7 +34,10 @@ public class SetWaveShaderVariables : MonoBehaviour
         propertyBlock.SetVector(waveDirectionName, gameObject.transform.TransformDirection(0,0,-1));
         propertyBlock.SetFloat(restHeightName, restHeight);
         propertyBlock.SetFloat(waveHeightName, waveHeight);
+        propertyBlock.SetFloat(waveGradientWidthName, waveGradientWidth);
         if (waveRenderer != null)
             waveRenderer.SetPropertyBlock(propertyBlock);
     }
 }
+
+

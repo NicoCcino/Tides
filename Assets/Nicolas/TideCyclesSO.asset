@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f78414dec8a2344da729133b8064b46, type: 3}
+  m_Name: TideCyclesSO
+  m_EditorClassIdentifier: Assembly-CSharp::TideCyclesSO
+  <tideCycles>k__BackingField:
+  - cycleNumber: 0
+    tideCoefficient: 1
+  - cycleNumber: 1
+    tideCoefficient: 1
+  - cycleNumber: 2
+    tideCoefficient: 2
+  - cycleNumber: 3
+    tideCoefficient: 1
+  - cycleNumber: 4
+    tideCoefficient: 3
+  - cycleNumber: 5
+    tideCoefficient: 2
+  - cycleNumber: 6
+    tideCoefficient: 4
+  - cycleNumber: 7
+    tideCoefficient: 3
+  - cycleNumber: 8
+    tideCoefficient: 4
+  - cycleNumber: 9
+    tideCoefficient: 5
+  - cycleNumber: 10
+    tideCoefficient: 6
