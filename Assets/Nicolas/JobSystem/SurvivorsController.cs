@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class SurvivorsController : Singleton<SurvivorsController>
 {
 
-    private JobManager jobManager;
+    //private JobManager jobManager;
 
     public List<SurvivorController> Survivors = new List<SurvivorController>();
     public List<SurvivorController> survivorsToRemove = new();
@@ -14,7 +14,7 @@ public class SurvivorsController : Singleton<SurvivorsController>
     protected override void Awake()
     {
         base.Awake();
-        jobManager = JobManager.Instance;
+        //jobManager = JobManager.Instance;
     }
 
     void Start()
@@ -24,11 +24,11 @@ public class SurvivorsController : Singleton<SurvivorsController>
 
     void Update()
     {
-        if (jobManager.PendingJobs.Count > 0)
+        if (JobManager.Instance.PendingJobs.Count > 0)
         {
             if (GetIdleSurvivors() != null)
             {
-                IJob nextJob = jobManager.PendingJobs.Dequeue();
+                IJob nextJob = JobManager.Instance.PendingJobs.Dequeue();
                 AssignJobToClosestIdleSurvivor(nextJob);
             }
         }
