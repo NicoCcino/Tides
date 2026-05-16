@@ -48,6 +48,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 02d4b9bbfb4f6f64c844eb3112bb62a1, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7eb4c5e185791a148aabf3a3d6a6f595, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 02d4b9bbfb4f6f64c844eb3112bb62a1, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 8d4a658c35381be44846c4afee7d0d0a, type: 2}
     - target: {fileID: 919132149155446097, guid: 02d4b9bbfb4f6f64c844eb3112bb62a1, type: 3}
       propertyPath: m_Name
       value: terrain_sideCliff
