@@ -5,6 +5,7 @@ public class Survivor : MonoBehaviour
 {
     public float age;
     public float speed;
+    public float gatherDistanceThreshold = 0.5f;
     private SurvivorController survivorController;
     private NavMeshAgent agent;
 
