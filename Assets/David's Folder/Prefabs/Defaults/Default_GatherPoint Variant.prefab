@@ -1755,6 +1755,7 @@ MonoBehaviour:
   btnAddWorker: {fileID: 603659398305328290}
   btnRemoveWorker: {fileID: 8040530365861320878}
   btnCancel: {fileID: 2241926297648401542}
+  textWorkerAmount: {fileID: 3141225978070708800}
 --- !u!1001 &3324371127449928476
 PrefabInstance:
   m_ObjectHideFlags: 0

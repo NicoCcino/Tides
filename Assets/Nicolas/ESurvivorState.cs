@@ -5,4 +5,5 @@ public enum ESurvivorState
     GoingToBase,
     Gathering,
     Building,
+    Dying
 }

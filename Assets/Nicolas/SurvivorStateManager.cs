@@ -55,7 +55,9 @@ public class SurvivorStateManager : BaseFSM<ESurvivorState, ASurvivorState>
                         { ESurvivorState.Idling, new IdlingState(survivorController, survivorStateManager)},
                         { ESurvivorState.Gathering, new GatheringState(survivorController, survivorStateManager)},
                         { ESurvivorState.Building, new BuildingState(survivorController, survivorStateManager)},
-                        { ESurvivorState.GoingToBase, new GoingToBaseState(survivorController, survivorStateManager)}
+                        { ESurvivorState.GoingToBase, new GoingToBaseState(survivorController, survivorStateManager)},
+                        { ESurvivorState.Dying, new DyingState(survivorController, survivorStateManager)}
+
              };
         }
     }
