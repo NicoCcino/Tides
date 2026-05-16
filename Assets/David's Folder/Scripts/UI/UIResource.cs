@@ -11,10 +11,10 @@ public class UIResource : MonoBehaviour
         switch (resourceType)
         {
             case ResourceType.FOOD:
-                trackedResource = BaseManager.Instance.FoodResource;
+                trackedResource = ResourcesManager.Instance.FoodResource;
                 break;
             case ResourceType.WOOD:
-                trackedResource = BaseManager.Instance.WoodResource;
+                trackedResource = ResourcesManager.Instance.WoodResource;
                 break;
         }
 
