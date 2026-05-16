@@ -8,7 +8,7 @@ public partial class BuildableBehaviour : MonoBehaviour, IPointerDownHandler
 {
 
     [SerializeField] private int buildingCost = 25;
-
+    [SerializeField] private Transform worldUiTransform;
     [SerializeField] private GameObject buildableGameObject;
     // [SerializeField] private GameObject previewGameObject;
     [SerializeField] private GameObject buildedGameObject;
@@ -58,6 +58,7 @@ public partial class BuildableBehaviour : MonoBehaviour, IPointerDownHandler
         informationsGameObject.SetActive(true);
         buildingControlGameObject.SetActive(false);
         ResourcesManager.Instance.AddWood(buildingCost);
+        UIPopupTextManager.Instance.SpawnPopup(worldUiTransform, "+" + buildingCost.ToString(), Color.green, true);
         CancelJobs();
         UpdateProgress(0f);
     }
@@ -75,6 +76,7 @@ public partial class BuildableBehaviour : MonoBehaviour, IPointerDownHandler
             informationsGameObject.SetActive(false);
             buildingControlGameObject.SetActive(true);
             UpdateProgress(0.0f);
+            UIPopupTextManager.Instance.SpawnPopup(worldUiTransform, "-" + buildingCost.ToString(), Color.red, false);
         }
     }
 

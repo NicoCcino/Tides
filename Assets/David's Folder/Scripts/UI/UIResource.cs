@@ -3,6 +3,7 @@ using UnityEngine;
 using Tides.Resources;
 using DG.Tweening;
 
+
 public class UIResource : MonoBehaviour
 {
     [SerializeField] private TMP_Text textAmount;
@@ -50,7 +51,7 @@ public class UIResource : MonoBehaviour
         {
             string sign = delta > 0 ? "+" : "";
             Color color = delta > 0 ? Color.green : Color.red;
-            UIPopupTextManager.Instance.SpawnPopup(transform, $"{sign}{delta}", color, delta > 0);
+            UIPopupTextManager.Instance.SpawnPopup(textAmount.transform, $"{sign}{delta}", color, delta > 0);
         }
 
         lastAmount = amount;
