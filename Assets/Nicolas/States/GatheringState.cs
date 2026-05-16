@@ -31,10 +31,10 @@ public class GatheringState : ASurvivorState
         Debug.Log("Survivor entered gathering state with target " + gatherPointBehaviour.transform.position);
 
 
-        if (survivorController.baseTransform != null)
-        {
-            basePosition = survivorController.baseTransform.position;
-        }
+        // if (survivorController.baseTransform != null)
+        // {
+        //     basePosition = survivorController.baseTransform.position;
+        // }
         //if (survivorController.resourceTransform != null)
         //{
         // resourcePosition = survivorController.resourceTransform.position;
