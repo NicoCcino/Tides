@@ -54,14 +54,15 @@ Material:
     - _DistortionStrength: 10
     - _Float: 0.5
     - _GradientLength: 5
-    - _MaxOpacity: 0.7
+    - _MaxOpacity: 0.9
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _RestHeight: -3
     - _Smoothness: 0.9
     - _TextureLOD: 5.44
     - _Thickness: -0.2
-    - _WaterColorDepthDistance: 1.5
-    - _WaveHeight: 5
+    - _WaterColorDepthDistance: 2
+    - _WaveHeight: 0
     - _ZMult: 100
     - _ZOffset: -0.73
     m_Colors:
