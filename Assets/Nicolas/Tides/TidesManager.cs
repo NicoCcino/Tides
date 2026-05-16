@@ -1,6 +1,8 @@
 using UnityEngine;
 using Tides.Resources;
 using System.Collections.Generic;
+using UnityEngine.Playables;
+
 
 
 public class TidesManager : Singleton<TidesManager>
@@ -11,12 +13,20 @@ public class TidesManager : Singleton<TidesManager>
     public enum TideState { Rising, High, Lowering, Low }
     public TideState currentTide = TideState.Low;
     [SerializeField]
-    private List<TideCycle> tideCycles = new();
+    private int currentCycleIndex = 0;
+
+    [SerializeField] private Animator waveAnimator;
+
+    public SetWaveShaderVariables setWaveShaderVariables;
+
+    public TideCyclesSO tideCyclesSO;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        setWaveShaderVariables.waveHeight = tideCyclesSO.tideCycles[currentCycleIndex].WaveHeight;
+        setWaveShaderVariables.restHeight = tideCyclesSO.tideCycles[currentCycleIndex].RestHeight;
     }
 
 
@@ -39,7 +49,11 @@ public class TidesManager : Singleton<TidesManager>
         if (currentTide == TideState.Low)
         {
             currentTide = TideState.Rising;
-            // Additional logic for raising tide
+            // Additional logic for rising tide
+            waveAnimator.SetBool("GoingUp", true);
+            Debug.Log("waveHeight set to " + tideCyclesSO.tideCycles[currentCycleIndex].WaveHeight);
+            setWaveShaderVariables.waveHeight = tideCyclesSO.tideCycles[currentCycleIndex].WaveHeight;
+
         }
         else if (currentTide == TideState.Rising)
         {
@@ -50,6 +64,9 @@ public class TidesManager : Singleton<TidesManager>
         {
             currentTide = TideState.Lowering;
             // Additional logic for lowering tide
+            waveAnimator.SetBool("GoingUp", false);
+            Debug.Log("restHeight set to " + tideCyclesSO.tideCycles[currentCycleIndex].RestHeight);
+            setWaveShaderVariables.restHeight = tideCyclesSO.tideCycles[currentCycleIndex].RestHeight;
             SurvivorsController.Instance.AddAgeToAll(1);
 
         }
@@ -57,6 +74,7 @@ public class TidesManager : Singleton<TidesManager>
         {
             currentTide = TideState.Low;
             // Additional logic for low tide
+            currentCycleIndex++;
         }
 
         Debug.Log("Tide changed to: " + currentTide);
