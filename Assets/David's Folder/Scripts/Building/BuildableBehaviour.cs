@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using Tides.Resources;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -16,14 +18,14 @@ public partial class BuildableBehaviour : MonoBehaviour, IPointerDownHandler
     [SerializeField] private GameObject buildingControlGameObject;
 
     [Header("Debug")]
-    [SerializeField, Range(0, 1)] private float buildingProgress = 0.0f;
+    [SerializeField, Range(0, 1)] public float BuildingProgress = 0.0f;
 
     private bool assignedBuilding = false;
 
     public void TickUpdateProgress()
     {
-        buildingProgress += (1 / buildingTime);
-        UpdateProgress(buildingProgress);
+        BuildingProgress += (1 / buildingTime) * Time.deltaTime;
+        UpdateProgress(BuildingProgress);
     }
 
     private void UpdateProgress(float amount)
@@ -48,6 +50,7 @@ public partial class BuildableBehaviour : MonoBehaviour, IPointerDownHandler
         buildingControlGameObject.SetActive(true);
         assignedBuilding = false;
         informationsGameObject.SetActive(true);
+        BuildingProgress = 0;
     }
     public void CancelBuilding()
     {
@@ -55,6 +58,7 @@ public partial class BuildableBehaviour : MonoBehaviour, IPointerDownHandler
         informationsGameObject.SetActive(true);
         buildingControlGameObject.SetActive(false);
         ResourcesManager.Instance.AddWood(buildingCost);
+        CancelJobs();
         UpdateProgress(0f);
     }
 
@@ -63,9 +67,6 @@ public partial class BuildableBehaviour : MonoBehaviour, IPointerDownHandler
 
         if (assignedBuilding == true)
         {
-            //DEBUG ONLY
-            TickUpdateProgress();
-            //
             return;
         }
         if (ResourcesManager.Instance.TryConsumeWood(buildingCost))
@@ -78,22 +79,34 @@ public partial class BuildableBehaviour : MonoBehaviour, IPointerDownHandler
     }
 
 }
-public partial class BuildableBehaviour : IJobable
+public partial class BuildableBehaviour : IJobProvider
 {
     public int AssignedWorkersCount { get; set; }
+
+    public Vector3 JobLocation => transform.position;
 
     public void AddJob()
     {
         JobManager.Instance.PendingJobs.Enqueue(new BuildJob(this));
+        AssignedWorkersCount++;
     }
 
     public void CancelJobs()
     {
-        throw new System.NotImplementedException();
+        List<SurvivorController> survivorControllers = SurvivorsController.Instance.Survivors.Where(s => s.currentJob != null && s.currentJob.GetType() == typeof(BuildJob) && s.currentJob.JobProvider == this).ToList();
+        foreach (SurvivorController survivor in survivorControllers)
+        {
+            survivor.StopCurrentJob();
+        }
+        AssignedWorkersCount = 0;
     }
 
     public void RemoveJob()
     {
-        throw new System.NotImplementedException();
+        SurvivorController survivorController = SurvivorsController.Instance.Survivors.FirstOrDefault(s => s.currentJob != null && s.currentJob.GetType() == typeof(BuildJob) && s.currentJob.JobProvider == this);
+        if (survivorController == null) return;
+
+        survivorController.StopCurrentJob();
+        AssignedWorkersCount--;
     }
 }

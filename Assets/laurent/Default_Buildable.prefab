@@ -50,7 +50,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6358565811588628652
 RectTransform:
   m_ObjectHideFlags: 0
@@ -431,13 +431,14 @@ GameObject:
   - component: {fileID: 1526343244583358598}
   - component: {fileID: 8998352881220213133}
   - component: {fileID: 5204001640099683082}
+  - component: {fileID: 3556886923950523156}
   m_Layer: 5
   m_Name: Canvas_Controls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5684681746562027018
 RectTransform:
   m_ObjectHideFlags: 0
@@ -522,6 +523,23 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &3556886923950523156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2708522029918885836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bf1f2c2ee48c4d4da67c8d16b775899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIJobControl
+  jobableBehaviour: {fileID: 5926979988016143571}
+  btnAddWorker: {fileID: 6968124320185406786}
+  btnRemoveWorker: {fileID: 3485372275702102982}
+  btnCancel: {fileID: 970943472505114316}
+  textWorkerAmount: {fileID: 6291606385238162721}
 --- !u!1 &3291245795932963218
 GameObject:
   m_ObjectHideFlags: 0
@@ -812,6 +830,7 @@ GameObject:
   - component: {fileID: 8599032658841892896}
   - component: {fileID: 7215221204185502627}
   - component: {fileID: 4283425208501534217}
+  - component: {fileID: 5926979988016143571}
   m_Layer: 0
   m_Name: ClickableBehaviour
   m_TagString: Untagged
@@ -905,7 +924,20 @@ MonoBehaviour:
   visualProgressEffect: {fileID: 8839822081052070911}
   informationsGameObject: {fileID: 3512076147018724829}
   buildingControlGameObject: {fileID: 2708522029918885836}
-  buildingProgress: 0
+  BuildingProgress: 0
+--- !u!114 &5926979988016143571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4263599824327372403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b9e34375d5b3784297d087ecf58ec33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::JobableBehaviour
+  JobableControlsGameObject: {fileID: 593311744342069080}
 --- !u!1 &4688309325173146715
 GameObject:
   m_ObjectHideFlags: 0

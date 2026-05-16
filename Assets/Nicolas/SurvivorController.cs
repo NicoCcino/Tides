@@ -73,6 +73,7 @@ public class SurvivorController : MonoBehaviour
         }
         if (currentJob is BuildJob buildJob)
         {
+            (survivorStateManager.StateDictionary[ESurvivorState.Building] as BuildingState).BuildJob = buildJob;
             survivorStateManager.ChangeState(ESurvivorState.Building);
         }
     }

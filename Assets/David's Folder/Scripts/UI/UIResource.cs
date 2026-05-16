@@ -11,6 +11,8 @@ public class UIResource : MonoBehaviour
 
     private Tween currentTween;
 
+    private int lastAmount;
+
     private void OnEnable()
     {
         switch (resourceType)
@@ -27,7 +29,8 @@ public class UIResource : MonoBehaviour
         {
             trackedResource.OnFailedConsumed += HandleFailedConsumed;
             trackedResource.OnAmountChanged += UpdateAmountText;
-            UpdateAmountText(trackedResource.GetAmount());
+            lastAmount = trackedResource.GetAmount();
+            UpdateAmountText(lastAmount);
         }
     }
 
@@ -42,6 +45,15 @@ public class UIResource : MonoBehaviour
 
     private void UpdateAmountText(int amount)
     {
+        int delta = amount - lastAmount;
+        if (delta != 0)
+        {
+            string sign = delta > 0 ? "+" : "";
+            Color color = delta > 0 ? Color.green : Color.red;
+            UIPopupTextManager.Instance.SpawnPopup(transform, $"{sign}{delta}", color, delta > 0);
+        }
+
+        lastAmount = amount;
         textAmount.text = amount.ToString();
     }
 

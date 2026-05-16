@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 public class JobableBehaviour : MonoBehaviour, IPointerDownHandler
 {
     [SerializeField] public GameObject JobableControlsGameObject;
-    public IJobable Jobable { get; protected set; }
+    public IJobProvider Jobable { get; protected set; }
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -14,6 +14,6 @@ public class JobableBehaviour : MonoBehaviour, IPointerDownHandler
 
     private void Awake()
     {
-        Jobable = GetComponentInParent<IJobable>();
+        Jobable = GetComponentInParent<IJobProvider>();
     }
 }

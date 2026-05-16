@@ -111,7 +111,7 @@ Material:
     - _DstBlendAlpha: 0
     - _EmissionEnabled: 0
     - _EnvironmentReflections: 1
-    - _FillValue: 0
+    - _FillValue: 0.05
     - _FlipbookMode: 0
     - _GlossMapScale: 0
     - _Glossiness: 0

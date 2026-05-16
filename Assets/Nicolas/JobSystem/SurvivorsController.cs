@@ -79,7 +79,7 @@ public class SurvivorsController : Singleton<SurvivorsController>
 
             foreach (var survivor in idleSurvivors)
             {
-                float distance = Vector3.Distance(survivor.transform.position, job.JobLocation);
+                float distance = Vector3.Distance(survivor.transform.position, job.JobProvider.JobLocation);
 
                 if (distance < closestDistance)
                 {

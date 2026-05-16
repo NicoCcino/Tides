@@ -50,9 +50,10 @@ namespace Tides.Resources
             transform.localScale = new Vector3(scale, scale, scale);
         }
     }
-    public partial class GatherPointBehaviour : IJobable
+    public partial class GatherPointBehaviour : IJobProvider
     {
         public int AssignedWorkersCount { get; set; }
+        public Vector3 JobLocation { get => transform.position; }
 
         public void AddJob()
         {

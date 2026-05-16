@@ -224,10 +224,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 49713230833600877, guid: 605b8f425f2a8b743b97fde979dbac95, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 49713230833600877, guid: 605b8f425f2a8b743b97fde979dbac95, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
@@ -284,10 +280,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3091074472670506163, guid: 605b8f425f2a8b743b97fde979dbac95, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3091074472670506163, guid: 605b8f425f2a8b743b97fde979dbac95, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
@@ -348,10 +340,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3440444034694748402, guid: 605b8f425f2a8b743b97fde979dbac95, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3440444034694748402, guid: 605b8f425f2a8b743b97fde979dbac95, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
@@ -366,6 +354,10 @@ PrefabInstance:
     - target: {fileID: 5546811861358844431, guid: 605b8f425f2a8b743b97fde979dbac95, type: 3}
       propertyPath: m_Name
       value: UI_ResourceWood
+      objectReference: {fileID: 0}
+    - target: {fileID: 8520017491808190444, guid: 605b8f425f2a8b743b97fde979dbac95, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -394,10 +386,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 49713230833600877, guid: 605b8f425f2a8b743b97fde979dbac95, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 49713230833600877, guid: 605b8f425f2a8b743b97fde979dbac95, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
@@ -416,7 +404,7 @@ PrefabInstance:
     - target: {fileID: 310769598770268989, guid: 605b8f425f2a8b743b97fde979dbac95, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 53569c2f39dafc74e9fbed48dbdcdff3, type: 3}
+      objectReference: {fileID: 21300000, guid: c5e4bd7cd5537dc4c924e6c558a6db5e, type: 3}
     - target: {fileID: 310769598770268989, guid: 605b8f425f2a8b743b97fde979dbac95, type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -427,6 +415,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 310769598770268989, guid: 605b8f425f2a8b743b97fde979dbac95, type: 3}
       propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 310769598770268989, guid: 605b8f425f2a8b743b97fde979dbac95, type: 3}
+      propertyPath: m_PreserveAspect
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3091074472670506163, guid: 605b8f425f2a8b743b97fde979dbac95, type: 3}
@@ -519,7 +511,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3440444034694748402, guid: 605b8f425f2a8b743b97fde979dbac95, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3440444034694748402, guid: 605b8f425f2a8b743b97fde979dbac95, type: 3}
       propertyPath: m_SizeDelta.y
@@ -536,6 +528,18 @@ PrefabInstance:
     - target: {fileID: 5546811861358844431, guid: 605b8f425f2a8b743b97fde979dbac95, type: 3}
       propertyPath: m_Name
       value: UI_ResourceFood
+      objectReference: {fileID: 0}
+    - target: {fileID: 7964065645730835861, guid: 605b8f425f2a8b743b97fde979dbac95, type: 3}
+      propertyPath: m_MinWidth
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7964065645730835861, guid: 605b8f425f2a8b743b97fde979dbac95, type: 3}
+      propertyPath: m_MinHeight
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8520017491808190444, guid: 605b8f425f2a8b743b97fde979dbac95, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

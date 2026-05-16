@@ -4,7 +4,7 @@ using UnityEngine;
 public abstract class BaseFSM<StateType, StateObject> : MonoBehaviour where StateObject : BaseState
 {
     protected Dictionary<StateType, StateObject> stateDictionary = new Dictionary<StateType, StateObject>();
-
+    public Dictionary<StateType, StateObject> StateDictionary => stateDictionary;
     public StateType CurrentState { get; protected set; }
     public abstract void ChangeState(StateType stateType);
 
