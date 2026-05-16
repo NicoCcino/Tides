@@ -2671,7 +2671,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SetWaveShaderVariables
   wavePositionName: _WavePosition
   waveDirectionName: _WaveDirection
+  restHeightName: _RestHeight
+  waveHeightName: _WaveHeight
   waveRenderer: {fileID: 167369731}
+  restHeight: -3
+  waveHeight: 0
 --- !u!95 &833511789
 Animator:
   serializedVersion: 7
