@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a78163f2cc5fe8940afd556b24da98ca, type: 3}
+  m_Name: CameraSettings
+  m_EditorClassIdentifier: Assembly-CSharp::Tides.Camera.CameraSettingsSO
+  <Settings>k__BackingField:
+    <PanSpeed>k__BackingField: 1
+    <ZoomSpeed>k__BackingField: 1000
+    <MinHeight>k__BackingField: 10
+    <MaxHeight>k__BackingField: 50
+    <DefaultHeight>k__BackingField: 20
+    <TiltAngle>k__BackingField: 70
+    <Smoothing>k__BackingField: 20
