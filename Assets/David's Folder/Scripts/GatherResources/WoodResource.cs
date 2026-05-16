@@ -11,10 +11,12 @@ public class WoodResource : IResource
     }
 
     public Action<int> OnAmountChanged { get; set; }
+    public Action OnFailedConsumed { get; set; }
 
     public void Add(int addedAmount)
     {
         woodAmount += addedAmount;
+        OnAmountChanged?.Invoke(woodAmount);
     }
 
     public int GetAmount()
@@ -25,5 +27,6 @@ public class WoodResource : IResource
     void IResource.SetAmount(int amount)
     {
         woodAmount = amount;
+        OnAmountChanged?.Invoke(woodAmount);
     }
 }
