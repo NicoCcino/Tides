@@ -79,6 +79,7 @@ public class SurvivorController : MonoBehaviour
     public void StopCurrentJob()
     {
         gatherPointBehaviour = null;
+        currentJob = null;
         survivorStateManager.ChangeState(ESurvivorState.Idling);
     }
 
@@ -104,24 +105,10 @@ public class SurvivorController : MonoBehaviour
 
     void Die()
     {
-        isDying = true;
-        Debug.Log($"Survivor {name} has died of old age at {age} years.");
-        // TODO: play Death animation
-        animator.SetTrigger("die");
-        // Disable survivor's ability to interact with the world
-        agent.isStopped = true;
-        // Remove survivor from SurvivorsController list
-        SurvivorsController.Instance.survivorsToRemove.Add(this);
-        // If survivor has a job, remove it from the job or mark it as unassigned so that another survivor can take it
-        JobManager.Instance.PendingJobs.Enqueue(currentJob);
-        currentJob = null;
-        // If survivor has a resource in inventory, delete it
-        if (resourceInInventory != null)
-        {
-            resourceInInventory = null;
-        }
-        // Delete survivor after some time to allow death animation to play
-        Destroy(gameObject, 5f);
+        survivorStateManager.ChangeState(ESurvivorState.Dying);
     }
-
+    public void DestroyThis(float seconds)
+    {
+        Destroy(this.gameObject, seconds);
+    }
 }

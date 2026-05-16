@@ -2,7 +2,7 @@ using Tides.Resources;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class BuildableBehaviour : MonoBehaviour, IPointerDownHandler
+public partial class BuildableBehaviour : MonoBehaviour, IPointerDownHandler
 {
 
     [SerializeField] private int buildingCost = 25;
@@ -77,4 +77,23 @@ public class BuildableBehaviour : MonoBehaviour, IPointerDownHandler
         }
     }
 
+}
+public partial class BuildableBehaviour : IJobable
+{
+    public int AssignedWorkersCount { get; set; }
+
+    public void AddJob()
+    {
+        JobManager.Instance.PendingJobs.Enqueue(new BuildJob(this));
+    }
+
+    public void CancelJobs()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void RemoveJob()
+    {
+        throw new System.NotImplementedException();
+    }
 }

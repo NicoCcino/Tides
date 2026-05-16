@@ -3,30 +3,21 @@ using Tides.Resources;
 
 public class BuildJob : IJob
 {
-    private GatherPointBehaviour gatherPointBehaviour;
-    public Vector3 JobLocation => gatherPointBehaviour.transform.position;
+    private BuildableBehaviour buildableBehaviour;
+    public Vector3 JobLocation => buildableBehaviour.transform.position;
 
-    public BuildJob()
+    public BuildJob(BuildableBehaviour buildableBehaviour)
     {
-    }
-
-    public Vector3 GetTargetPosition()
-    {
-        return Vector3.zero; // TO DO
+        this.buildableBehaviour = buildableBehaviour;
     }
 
     public void StartJob(SurvivorController survivorController)
     {
-        //survivorController.survivorStateManager.ChangeState(ESurvivorState.Gathering);
+        survivorController.survivorStateManager.ChangeState(ESurvivorState.Building);
     }
 
     public bool IsCompleted()
     {
-        return true;
+        return buildableBehaviour;
     }
-
-    //public EJobType GetJobType()
-    //{
-    //    return gatherPointBehaviour.Gather;
-    //}
 }

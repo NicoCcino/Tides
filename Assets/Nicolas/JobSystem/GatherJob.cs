@@ -11,11 +11,6 @@ public class GatherJob : IJob
         this.gatherPointBehaviour = gatherPointBehaviour;
     }
 
-    public Vector3 GetTargetPosition()
-    {
-        return gatherPointBehaviour.transform.position;
-    }
-
     public void StartJob(SurvivorController survivorController)
     {
         // If there is still resource to gather, start gathering, otherwise do nothing (job should be removed from queue)
@@ -35,9 +30,4 @@ public class GatherJob : IJob
     {
         return true;
     }
-
-    //public EJobType GetJobType()
-    //{
-    //    return gatherPointBehaviour.Gather;
-    //}
 }
