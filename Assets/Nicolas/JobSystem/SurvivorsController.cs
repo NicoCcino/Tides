@@ -7,10 +7,13 @@ public class SurvivorsController : Singleton<SurvivorsController>
 
     public JobManager jobManager;
 
-    private List<SurvivorController> survivors = new List<SurvivorController>();
+    public List<SurvivorController> survivors = new List<SurvivorController>();
+    public List<SurvivorController> survivorsToRemove = new();
 
-    void Awake()
+
+    protected override void Awake()
     {
+        base.Awake();
         jobManager = JobManager.Instance;
     }
 
@@ -29,6 +32,14 @@ public class SurvivorsController : Singleton<SurvivorsController>
                 AssignJobToClosestIdleSurvivor(nextJob);
             }
         }
+    }
+
+    void LateUpdate()
+    {
+        foreach (var s in survivorsToRemove)
+            survivors.Remove(s);
+
+        survivorsToRemove.Clear();
     }
 
     void InitSurvivorsList()
@@ -98,6 +109,15 @@ public class SurvivorsController : Singleton<SurvivorsController>
         {
             Debug.Log("No idle survivors available to assign the job.");
             return null;
+        }
+    }
+
+    public void AddAgeToAll(int ageToAdd)
+    {
+        foreach (var survivor in survivors)
+        {
+            if (survivor == null) continue;
+            survivor.AddAge(ageToAdd);
         }
     }
 }
