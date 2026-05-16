@@ -5,12 +5,13 @@ using System.Collections.Generic;
 public class SurvivorsController : Singleton<SurvivorsController>
 {
 
-    public JobManager jobManager;
+    private JobManager jobManager;
 
-    private List<SurvivorController> survivors = new List<SurvivorController>();
+    public List<SurvivorController> Survivors = new List<SurvivorController>();
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         jobManager = JobManager.Instance;
     }
 
@@ -36,26 +37,22 @@ public class SurvivorsController : Singleton<SurvivorsController>
         // Get all objects with Survivor component
         SurvivorController[] foundSurvivors = FindObjectsByType<SurvivorController>();
 
-        survivors = new List<SurvivorController>(foundSurvivors);
+        Survivors = new List<SurvivorController>(foundSurvivors);
 
-        Debug.Log($"Found {survivors.Count} survivors");
+        Debug.Log($"Found {Survivors.Count} survivors");
     }
 
     public List<SurvivorController> GetIdleSurvivors()
     {
-        List<SurvivorController> idleSurvivors = survivors.Where(s => s.survivorStateManager.CurrentState == ESurvivorState.Idling).ToList();
+        List<SurvivorController> idleSurvivors = Survivors.Where(s => s.survivorStateManager.CurrentState == ESurvivorState.Idling).ToList();
 
         Debug.Log($"Found {idleSurvivors.Count} idle survivors");
 
         if (idleSurvivors.Count == 0)
         {
             Debug.Log("No idle survivors found");
-            return null;
         }
-        else
-        {
-            return idleSurvivors;
-        }
+        return idleSurvivors;
     }
 
     SurvivorController AssignJobToClosestIdleSurvivor(IJob job)

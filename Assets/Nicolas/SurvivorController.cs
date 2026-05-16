@@ -84,4 +84,9 @@ public class SurvivorController : MonoBehaviour
             survivorStateManager.ChangeState(ESurvivorState.Building);
         }
     }
+    public void StopCurrentJob()
+    {
+        gatherPointBehaviour = null;
+        survivorStateManager.ChangeState(ESurvivorState.Idling);
+    }
 }
