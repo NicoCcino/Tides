@@ -274,6 +274,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tides.Resources.GatherPointBehaviour
   ResourceType: 1
+  scaleCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.0008695651
+      value: 0.40034366
+      inSlope: 0.92210704
+      outSlope: 0.92210704
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.039130434
+    - serializedVersion: 3
+      time: 0.9991303
+      value: 0.9982818
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  affectedTransform: {fileID: 7747534802271657550}
 --- !u!1001 &3324371127449928476
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -361,5 +386,10 @@ PrefabInstance:
 --- !u!4 &4881637204724941143 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7898617485715423819, guid: 3322ebd7e695fd14ea98fe9c89c8ea7a, type: 3}
+  m_PrefabInstance: {fileID: 3324371127449928476}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7747534802271657550 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5018782637739154770, guid: 3322ebd7e695fd14ea98fe9c89c8ea7a, type: 3}
   m_PrefabInstance: {fileID: 3324371127449928476}
   m_PrefabAsset: {fileID: 0}
