@@ -4,7 +4,6 @@ using Tides.Resources;
 [System.Serializable]
 public class GoingToBaseState : ASurvivorState
 {
-    public Vector3 target = Vector3.zero;
     public Vector3 basePosition = Vector3.zero;
     float baseDistanceThreshold = 0.5f;
     bool isStoring = false;
@@ -17,10 +16,13 @@ public class GoingToBaseState : ASurvivorState
     public override void Enter()
     {
         Debug.Log("Survivor entered GoingToBaseState state");
-        survivorController.GoTo(target);
+        basePosition = CampsController.Instance.GetClosestCamp(survivorController).transform.position;
+
+        survivorController.GoTo(basePosition);
 
         isStoring = false;
         storeTimer = 0f;
+
     }
 
     public override void Exit()
