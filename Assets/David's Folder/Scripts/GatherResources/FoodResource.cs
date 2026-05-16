@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class FoodResource : IResource
@@ -8,6 +9,8 @@ public class FoodResource : IResource
     {
         foodAmount = amount;
     }
+
+    public Action<int> OnAmountChanged { get; set; }
 
     public void Add(int addedAmount)
     {

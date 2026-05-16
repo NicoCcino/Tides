@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class WoodResource : IResource
@@ -8,6 +9,8 @@ public class WoodResource : IResource
     {
         woodAmount = amount;
     }
+
+    public Action<int> OnAmountChanged { get; set; }
 
     public void Add(int addedAmount)
     {

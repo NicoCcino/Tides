@@ -1,12 +1,14 @@
+using System;
 using UnityEngine;
 
 public interface IResource
 {
+    public Action<int> OnAmountChanged { get; set; }
     public int GetAmount();
     protected void SetAmount(int amount);
     public bool CanConsume(int checkedAmount)
     {
-        return checkedAmount > GetAmount();
+        return checkedAmount < GetAmount();
     }
     public bool TryConsume(int consumedAmount)
     {
