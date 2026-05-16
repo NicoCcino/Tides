@@ -15,8 +15,8 @@ MonoBehaviour:
   <Settings>k__BackingField:
     <PanSpeed>k__BackingField: 1
     <ZoomSpeed>k__BackingField: 1000
-    <MinHeight>k__BackingField: 10
-    <MaxHeight>k__BackingField: 50
-    <DefaultHeight>k__BackingField: 20
+    <MinHeight>k__BackingField: 3
+    <MaxHeight>k__BackingField: 15
+    <DefaultHeight>k__BackingField: 5
     <TiltAngle>k__BackingField: 70
     <Smoothing>k__BackingField: 20
