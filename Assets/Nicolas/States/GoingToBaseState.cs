@@ -10,7 +10,7 @@ public class GoingToBaseState : ASurvivorState
     bool isStoring = false;
     float storeTimer = 0f;
     float storeDuration = 4.5f;
-    public GoingToBaseState(Survivor survivor, SurvivorController survivorController, SurvivorStateManager survivorStateManager) : base(survivor, survivorController, survivorStateManager)
+    public GoingToBaseState(SurvivorController survivorController, SurvivorStateManager survivorStateManager) : base(survivorController, survivorStateManager)
     {
     }
 
@@ -41,7 +41,16 @@ public class GoingToBaseState : ASurvivorState
             if (storeTimer >= storeDuration)
             {
                 storeTimer = 0f;
+                // Check if deposit still has resources. If not, remove current gathering job.
+                if (survivorController.gatherPointBehaviour == null || survivorController.gatherPointBehaviour.Resource.GetAmount() <= 0)
+                {
+                    Debug.Log("No resources left to gather at this point, removing currentJob");
+                    survivorController.currentJob = null;
+                    survivorController.gatherPointBehaviour = null;
+                }
+                // Back to idle
                 survivorStateManager.ChangeState(ESurvivorState.Idling);
+
             }
         }
     }
@@ -53,7 +62,7 @@ public class GoingToBaseState : ASurvivorState
             // If distance between agent and base is less than a certain value, put down resource
             if (survivorController.agent.pathPending) return;
 
-            float distance = Vector3.Distance(survivor.transform.position, basePosition);
+            float distance = Vector3.Distance(survivorController.transform.position, basePosition);
 
             if (distance <= baseDistanceThreshold)
             {
@@ -73,21 +82,21 @@ public class GoingToBaseState : ASurvivorState
     private void StoreResources()
     {
         isStoring = true;
-        if (survivor.resourceInInventory == null) return;
+        if (survivorController.resourceInInventory == null) return;
 
-        if (survivor.resourceInInventory is WoodResource)
+        if (survivorController.resourceInInventory is WoodResource)
         {
             Tides.Resources.ResourcesManager.Instance.AddWood(
-                survivor.resourceInInventory.GetAmount()
+                survivorController.resourceInInventory.GetAmount()
                 );
-            survivor.resourceInInventory = null;
+            survivorController.resourceInInventory = null;
         }
-        else if (survivor.resourceInInventory is FoodResource)
+        else if (survivorController.resourceInInventory is FoodResource)
         {
             ResourcesManager.Instance.AddFood(
-                survivor.resourceInInventory.GetAmount()
+                survivorController.resourceInInventory.GetAmount()
                 );
-            survivor.resourceInInventory = null;
+            survivorController.resourceInInventory = null;
         }
 
         // Play store resources anim

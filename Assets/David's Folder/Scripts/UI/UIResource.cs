@@ -1,11 +1,16 @@
 using TMPro;
 using UnityEngine;
 using Tides.Resources;
+using DG.Tweening;
+
 public class UIResource : MonoBehaviour
 {
     [SerializeField] private TMP_Text textAmount;
     [SerializeField] private ResourceType resourceType;
     private IResource trackedResource;
+
+    private Tween currentTween;
+
     private void OnEnable()
     {
         switch (resourceType)
@@ -18,9 +23,36 @@ public class UIResource : MonoBehaviour
                 break;
         }
 
+        if (trackedResource != null)
+        {
+            trackedResource.OnFailedConsumed += HandleFailedConsumed;
+            trackedResource.OnAmountChanged += UpdateAmountText;
+            UpdateAmountText(trackedResource.GetAmount());
+        }
     }
-    private void Update()
+
+    private void OnDisable()
     {
-        textAmount.text = trackedResource.GetAmount().ToString();
+        if (trackedResource != null)
+        {
+            trackedResource.OnFailedConsumed -= HandleFailedConsumed;
+            trackedResource.OnAmountChanged -= UpdateAmountText;
+        }
+    }
+
+    private void UpdateAmountText(int amount)
+    {
+        textAmount.text = amount.ToString();
+    }
+
+    private void HandleFailedConsumed()
+    {
+        currentTween?.Kill(true);
+
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(textAmount.transform.DOPunchScale(Vector3.one * 1, 0.3f));
+        sequence.Join(textAmount.DOColor(Color.red, 0.15f).SetLoops(2, LoopType.Yoyo));
+
+        currentTween = sequence;
     }
 }

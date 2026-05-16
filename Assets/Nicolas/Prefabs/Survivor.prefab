@@ -428,7 +428,6 @@ GameObject:
   - component: {fileID: 7676989486109031015}
   - component: {fileID: 5146045546645248584}
   - component: {fileID: 6800113894573620960}
-  - component: {fileID: 7698075826776772389}
   - component: {fileID: 983810712335657163}
   - component: {fileID: 2347342831895062734}
   - component: {fileID: 6461590075638054398}
@@ -493,21 +492,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AutoPlayAnimations: 1
   PaletteOverride: {fileID: 0}
---- !u!114 &7698075826776772389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4094925671315069487}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06692945ca727ed48ad44be462d71477, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Survivor
-  age: 0
-  speed: 4
-  maxLoad: 5
 --- !u!114 &983810712335657163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -520,8 +504,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fcd072627b53154ba1af0c3a6321898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SurvivorController
+  age: 0
+  speed: 3.5
+  survivorStateManager: {fileID: 0}
   agent: {fileID: 0}
   animator: {fileID: 0}
+  gatherPointBehaviour: {fileID: 0}
+  maxLoad: 5
   baseTransform: {fileID: 0}
   resourceTransform: {fileID: 0}
 --- !u!114 &2347342831895062734
@@ -537,7 +526,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SurvivorStateManager
   survivorController: {fileID: 983810712335657163}
-  survivor: {fileID: 7698075826776772389}
   survivorStateManager: {fileID: 2347342831895062734}
 --- !u!195 &6461590075638054398
 NavMeshAgent:

@@ -1,8 +1,10 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 namespace Tides.Resources
 {
-    public class GatherPointBehaviour : MonoBehaviour
+    public partial class GatherPointBehaviour : MonoBehaviour
     {
         [SerializeField] public ResourceType ResourceType;
         [SerializeField] private AnimationCurve scaleCurve;
@@ -46,6 +48,34 @@ namespace Tides.Resources
         {
             float scale = scaleCurve.Evaluate(newAmount / baseAmount);
             transform.localScale = new Vector3(scale, scale, scale);
+        }
+    }
+    public partial class GatherPointBehaviour : IJobable
+    {
+        public int AssignedWorkersCount { get; set; }
+
+        public void AddJob()
+        {
+            JobManager.Instance.PendingJobs.Enqueue(new GatherJob(this));
+            AssignedWorkersCount++;
+        }
+
+        public void CancelJobs()
+        {
+            List<SurvivorController> survivorControllers = SurvivorsController.Instance.Survivors.Where(s => s.gatherPointBehaviour != null && s.gatherPointBehaviour == this).ToList();
+            foreach (SurvivorController survivor in survivorControllers)
+            {
+                survivor.StopCurrentJob();
+            }
+            AssignedWorkersCount = 0;
+        }
+
+        public void RemoveJob()
+        {
+            SurvivorController survivorController = SurvivorsController.Instance.Survivors.FirstOrDefault(s => s.gatherPointBehaviour != null && s.gatherPointBehaviour == this);
+            if (survivorController == null) return;
+            survivorController.StopCurrentJob();
+            AssignedWorkersCount--;
         }
     }
     [System.Serializable]

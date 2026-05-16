@@ -11,10 +11,12 @@ public class FoodResource : IResource
     }
 
     public Action<int> OnAmountChanged { get; set; }
+    public Action OnFailedConsumed { get; set; }
 
     public void Add(int addedAmount)
     {
         foodAmount += addedAmount;
+        OnAmountChanged?.Invoke(foodAmount);
     }
 
     public int GetAmount()
@@ -25,5 +27,6 @@ public class FoodResource : IResource
     void IResource.SetAmount(int amount)
     {
         foodAmount = amount;
+        OnAmountChanged?.Invoke(foodAmount);
     }
 }

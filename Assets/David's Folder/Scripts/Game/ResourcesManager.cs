@@ -1,4 +1,5 @@
 using NaughtyAttributes;
+using Unity.VisualScripting;
 using UnityEngine;
 namespace Tides.Resources
 {
@@ -7,34 +8,39 @@ namespace Tides.Resources
     {
         public FoodResource FoodResource;
         public WoodResource WoodResource;
-
+        [SerializeField] private int defaultFood = 25;
+        [SerializeField] private int defaultWood = 25;
         private void OnEnable()
         {
-            FoodResource = new FoodResource(25);
-            WoodResource = new WoodResource(10);
+            FoodResource = new FoodResource(defaultFood);
+            WoodResource = new WoodResource(defaultWood);
         }
         public void AddFood(int amount)
         {
             FoodResource.Add(amount);
         }
-        public void ConsumeFood(int amount)
+        public bool TryConsumeFood(int amount)
         {
             if (!(FoodResource as IResource).TryConsume(amount))
             {
                 Debug.Log("Not enough Food to consume !");
+                return false;
             }
+            return true;
         }
 
         public void AddWood(int amount)
         {
             WoodResource.Add(amount);
         }
-        public void ConsumeWood(int amount)
+        public bool TryConsumeWood(int amount)
         {
             if (!(WoodResource as IResource).TryConsume(amount))
             {
                 Debug.Log("Not enough Wood to consume !");
+                return false;
             }
+            return true;
         }
 
 
@@ -53,12 +59,12 @@ namespace Tides.Resources
         [Button("Consume 1 FOOD")]
         private void ConsumeFoodDebug()
         {
-            ConsumeFood(1);
+            TryConsumeFood(1);
         }
         [Button("Consume 1 WOOD")]
         private void ConsumeWoodDebug()
         {
-            ConsumeWood(1);
+            TryConsumeWood(1);
         }
         #endregion
     }

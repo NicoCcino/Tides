@@ -27,7 +27,7 @@ namespace IFCE.ValueTracking.UX
             }
         }
 
-        private void Update()
+        private void Start()
         {
             if (targetTransform == null) return;
 
