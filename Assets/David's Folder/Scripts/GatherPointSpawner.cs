@@ -103,7 +103,7 @@ public class GatherPointSpawner : MonoBehaviour
 
             // R < 0.5f (Height)
             // G > 0 (Valid area)
-            if (pixel.r < 0.5f && pixel.g > 0.01f)
+            if (pixel.r <= 0.55f && pixel.g > 0.01f)
             {
                 float x = worldCenter.x + ((float)u / texWidth - 0.5f) * worldSize.x;
                 float z = worldCenter.z + ((float)v / texHeight - 0.5f) * worldSize.z;
