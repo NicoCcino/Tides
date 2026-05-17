@@ -9562,6 +9562,7 @@ MonoBehaviour:
   waveAnimator: {fileID: 1445005897}
   setWaveShaderVariables: {fileID: 1445005898}
   tideCyclesSO: {fileID: 11400000, guid: fec9b7d9adc474d4ca5987d9ac9a6903, type: 2}
+  waveTransform: {fileID: 0}
 --- !u!1 &1890873337
 GameObject:
   m_ObjectHideFlags: 0
@@ -11627,6 +11628,54 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6446511417140919417, guid: b8d45e7f19059284e8e984b77a469c2a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623774235533601325, guid: b8d45e7f19059284e8e984b77a469c2a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623774235533601325, guid: b8d45e7f19059284e8e984b77a469c2a, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623774235533601325, guid: b8d45e7f19059284e8e984b77a469c2a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623774235533601325, guid: b8d45e7f19059284e8e984b77a469c2a, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623774235533601325, guid: b8d45e7f19059284e8e984b77a469c2a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623774235533601325, guid: b8d45e7f19059284e8e984b77a469c2a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879344281728712219, guid: b8d45e7f19059284e8e984b77a469c2a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879344281728712219, guid: b8d45e7f19059284e8e984b77a469c2a, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879344281728712219, guid: b8d45e7f19059284e8e984b77a469c2a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879344281728712219, guid: b8d45e7f19059284e8e984b77a469c2a, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879344281728712219, guid: b8d45e7f19059284e8e984b77a469c2a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879344281728712219, guid: b8d45e7f19059284e8e984b77a469c2a, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
@@ -13972,10 +14021,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6983281306575818653, guid: de80a17bc2cd63f479f814a3b33b004e, type: 3}
-      propertyPath: affectedRenderers.Array.data[0].renderer
-      value: 
-      objectReference: {fileID: 5274405440169353425}
     - target: {fileID: 7196653106612981782, guid: de80a17bc2cd63f479f814a3b33b004e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -14000,10 +14045,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7593139239964523931, guid: de80a17bc2cd63f479f814a3b33b004e, type: 3}
-      propertyPath: affectedRenderers.Array.data[0].renderer
-      value: 
-      objectReference: {fileID: 5274405440169353425}
     - target: {fileID: 8052544490757370040, guid: de80a17bc2cd63f479f814a3b33b004e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

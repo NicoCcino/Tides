@@ -686,7 +686,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::IFCE.ValueTracking.UX.ShaderPositionUpdater
   targetTransform: {fileID: 4202874642837259208}
   affectedRenderers:
-  - renderer: {fileID: 0}
+  - renderer: {fileID: 4542769576818311032}
+    shaderPropertyId: _ObjectEnd
+    propertyId: 0
+  - renderer: {fileID: 1997671415511341312}
+    shaderPropertyId: _ObjectEnd
+    propertyId: 0
+  - renderer: {fileID: 9072412578896475400}
+    shaderPropertyId: _ObjectEnd
+    propertyId: 0
+  - renderer: {fileID: 4336366913223379261}
+    shaderPropertyId: _ObjectEnd
+    propertyId: 0
+  - renderer: {fileID: 3959869787045571091}
+    shaderPropertyId: _ObjectEnd
+    propertyId: 0
+  - renderer: {fileID: 2112974463820479629}
     shaderPropertyId: _ObjectEnd
     propertyId: 0
 --- !u!1 &4991041910473335156
@@ -825,7 +840,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::IFCE.ValueTracking.UX.ShaderPositionUpdater
   targetTransform: {fileID: 6156255615754355704}
   affectedRenderers:
-  - renderer: {fileID: 0}
+  - renderer: {fileID: 4542769576818311032}
+    shaderPropertyId: _ObjectStart
+    propertyId: 0
+  - renderer: {fileID: 1997671415511341312}
+    shaderPropertyId: _ObjectStart
+    propertyId: 0
+  - renderer: {fileID: 9072412578896475400}
+    shaderPropertyId: _ObjectStart
+    propertyId: 0
+  - renderer: {fileID: 4336366913223379261}
+    shaderPropertyId: _ObjectStart
+    propertyId: 0
+  - renderer: {fileID: 3959869787045571091}
+    shaderPropertyId: _ObjectStart
+    propertyId: 0
+  - renderer: {fileID: 2112974463820479629}
     shaderPropertyId: _ObjectStart
     propertyId: 0
 --- !u!1 &5487512389068768341
