@@ -41,6 +41,12 @@ public class GatheringState : ASurvivorState
         //}
 
         survivorController.GoTo(gatherPointBehaviour.transform.position);
+        //Audio
+        if(survivorController.AudioSource != null && survivorController.GatherClip != null)
+        {
+            survivorController.AudioSource.clip = survivorController.GatherClip;
+            survivorController.AudioSource.Play();
+        }
 
     }
 

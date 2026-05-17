@@ -13,6 +13,13 @@ public class BuildingState : ASurvivorState
     {
         survivorController.GoTo(BuildJob.JobProvider.JobLocation);
         Debug.Log("Survivor entered building state");
+
+        //Audio
+        if (survivorController.AudioSource != null && survivorController.BuildClip != null)
+        {
+            survivorController.AudioSource.clip = survivorController.BuildClip;
+            survivorController.AudioSource.Play();
+        }
     }
 
     public override void Exit()
