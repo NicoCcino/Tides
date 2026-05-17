@@ -8,7 +8,7 @@ public class GoingToBaseState : ASurvivorState
     float baseDistanceThreshold = 2f;
     bool isStoring = false;
     float storeTimer = 0f;
-    float storeDuration = 4.5f;
+    float storeDuration = 3f;
     public GoingToBaseState(SurvivorController survivorController, SurvivorStateManager survivorStateManager) : base(survivorController, survivorStateManager)
     {
     }
@@ -42,17 +42,7 @@ public class GoingToBaseState : ASurvivorState
             storeTimer += Time.deltaTime;
             if (storeTimer >= storeDuration)
             {
-                storeTimer = 0f;
-                // Check if deposit still has resources. If not, remove current gathering job.
-                if (survivorController.gatherPointBehaviour == null || survivorController.gatherPointBehaviour.Resource.GetAmount() <= 0)
-                {
-                    Debug.Log("No resources left to gather at this point, removing currentJob");
-                    survivorController.currentJob = null;
-                    survivorController.gatherPointBehaviour = null;
-                }
-                // Back to idle
-                survivorStateManager.ChangeState(ESurvivorState.Idling);
-
+                CompleteStoreResources();
             }
         }
     }
@@ -72,20 +62,26 @@ public class GoingToBaseState : ASurvivorState
 
 
                 // Base collects all inventory.
-                StoreResources();
+                StartStoreResources();
 
             }
         }
+    }
 
+    private void StartStoreResources()
+    {
+        isStoring = true;
 
+        // Play store resources anim
+        survivorController.animator.SetTrigger("store");
 
     }
 
-    private void StoreResources()
+    private void CompleteStoreResources()
     {
-        isStoring = true;
-        if (survivorController.resourceInInventory == null) return;
 
+        // Transfer resource from survivor inventory to global resource manager
+        if (survivorController.resourceInInventory == null) return;
         if (survivorController.resourceInInventory is WoodResource)
         {
             Tides.Resources.ResourcesManager.Instance.AddWood(
@@ -101,8 +97,16 @@ public class GoingToBaseState : ASurvivorState
             survivorController.resourceInInventory = null;
         }
 
-        // Play store resources anim
-        survivorController.animator.SetTrigger("store");
+        storeTimer = 0f;
+        // Check if deposit still has resources. If not, remove current gathering job.
+        if (survivorController.gatherPointBehaviour == null || survivorController.gatherPointBehaviour.Resource.GetAmount() <= 0)
+        {
+            Debug.Log("No resources left to gather at this point, removing currentJob");
+            survivorController.currentJob = null;
+            survivorController.gatherPointBehaviour = null;
+        }
+        // Back to idle
+        survivorStateManager.ChangeState(ESurvivorState.Idling);
 
     }
 }

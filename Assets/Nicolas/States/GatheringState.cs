@@ -12,7 +12,9 @@ public class GatheringState : ASurvivorState
     public Vector3 basePosition;
     private float gatherTimer;
     private bool isGathering;
-    private float gatherDuration = 5.97f / 2;
+    private float gatherDuration = 5f / 2;
+    //private float gatherDuration = 5.97f / 2;
+
     public float gatherDistanceThreshold = 0.5f;
 
 
