@@ -31,6 +31,10 @@ public class SurvivorController : MonoBehaviour
     public Transform baseTransform;
     public Transform resourceTransform;
 
+    [Header("Audio")]
+    public AudioSource AudioSource;
+    public AudioClip GatherClip;
+    public AudioClip BuildClip;
 
     public void Awake()
     {
@@ -105,7 +109,7 @@ public class SurvivorController : MonoBehaviour
         agent.speed = speed;
     }
 
-    void Die()
+    public void Die()
     {
         survivorStateManager.ChangeState(ESurvivorState.Dying);
     }

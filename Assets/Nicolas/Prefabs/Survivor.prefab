@@ -517,6 +517,9 @@ MonoBehaviour:
   maxLoad: 5
   baseTransform: {fileID: 0}
   resourceTransform: {fileID: 0}
+  AudioSource: {fileID: 8653657546541661516}
+  GatherClip: {fileID: 8300000, guid: 5f9fac1b1859e7c43807009a7ca21c88, type: 3}
+  BuildClip: {fileID: 8300000, guid: a4c829112214374429c1e9aa2f375d55, type: 3}
 --- !u!114 &2347342831895062734
 MonoBehaviour:
   m_ObjectHideFlags: 0
