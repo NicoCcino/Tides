@@ -106,14 +106,14 @@ public class SurvivorController : MonoBehaviour
     public void AddAge(int ageToAdd)
     {
         age += ageToAdd;
-        if (age > maxAge)
-        {
-            Die();
-        }
-        else
-        {
-            UpdateSpeedBasedOnAge();
-        }
+        // if (age > maxAge)
+        // {
+        //     Die();
+        // }
+        // else
+        // {
+        UpdateSpeedBasedOnAge();
+        // }
         Debug.Log($"Survivor {name} is now {age} years old.");
     }
 

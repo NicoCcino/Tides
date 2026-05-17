@@ -151,16 +151,16 @@ public class TidesManager : Singleton<TidesManager>
         switch (currentTide)
         {
             case TideState.Rising:
-                timeRemaining = tideDurationHigh + tideDurationLowering + tideDurationLow + tideDurationRising - tideTimer;
+                timeRemaining = tideDurationRising + tideDurationHigh + tideDurationLowering + tideDurationLow - tideTimer;
                 break;
             case TideState.High:
-                timeRemaining = tideDurationLowering + tideDurationLow + tideDurationRising - tideTimer;
+                timeRemaining = tideDurationHigh + tideDurationLowering + tideDurationLow - tideTimer;
                 break;
             case TideState.Lowering:
-                timeRemaining = tideDurationLow + tideDurationRising - tideTimer;
+                timeRemaining = tideDurationLowering + tideDurationLow - tideTimer;
                 break;
             case TideState.Low:
-                timeRemaining = tideDurationRising - tideTimer;
+                timeRemaining = tideDurationLow - tideTimer;
                 break;
         }
 
