@@ -52,10 +52,10 @@ namespace Tides.Resources
         {
             float scale = scaleCurve.Evaluate(newAmount / baseAmount);
             affectedTransform.localScale = new Vector3(scale, scale, scale);
-            if (newAmount <= 0)
-            {
-                CancelJobs();
-            }
+            //if (newAmount <= 0)
+            //{
+            //    CancelJobs();
+            //}
         }
     }
     public partial class GatherPointBehaviour : IJobProvider
