@@ -36,10 +36,10 @@ public class UINextTides : MonoBehaviour
         {
             int tideIndex = (int)(currentTideIndex + i);
 
-            tidesNumberTexts[i].text = $"Tide {tidesManager.GetHighTidesSurvived() + i + 1}";
+            tidesNumberTexts[i].text = $"Tide {tidesManager.GetHighTidesStartedCount() + i + 1}";
 
-            float timeRemainingBeforeHighTide = tidesManager.GetTimeRemainingBeforeHighTide() + (tidesManager.cycleDuration * i);
-            tidesRemainingTimeTexts[i].text = $"in {Mathf.Max(0, timeRemainingBeforeHighTide):F0} seconds";
+            float timeRemainingBeforeRisingTide = tidesManager.GetTimeRemainingBeforeRisingTide() + (tidesManager.cycleDuration * i);
+            tidesRemainingTimeTexts[i].text = $"in {Mathf.Max(0, timeRemainingBeforeRisingTide):F0} seconds";
 
             tidesHeightTexts[i].text = $"Height: {tidesManager.tideCyclesSO.tideCycles[tideIndex].tideCoefficient}";
 

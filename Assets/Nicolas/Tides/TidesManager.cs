@@ -144,37 +144,37 @@ public class TidesManager : Singleton<TidesManager>
         return timeRemaining;
     }
 
-    public float GetTimeRemainingBeforeHighTide()
+    public float GetTimeRemainingBeforeRisingTide()
     {
         float timeRemaining = 0f;
 
         switch (currentTide)
         {
             case TideState.Rising:
-                timeRemaining = tideDurationRising - tideTimer;
-                break;
-            case TideState.High:
                 timeRemaining = tideDurationHigh + tideDurationLowering + tideDurationLow + tideDurationRising - tideTimer;
                 break;
-            case TideState.Lowering:
+            case TideState.High:
                 timeRemaining = tideDurationLowering + tideDurationLow + tideDurationRising - tideTimer;
                 break;
-            case TideState.Low:
+            case TideState.Lowering:
                 timeRemaining = tideDurationLow + tideDurationRising - tideTimer;
+                break;
+            case TideState.Low:
+                timeRemaining = tideDurationRising - tideTimer;
                 break;
         }
 
-        //Debug.Log("Time remaining before high tide: " + timeRemaining + " seconds");
+        //Debug.Log("Time remaining before rising tide: " + timeRemaining + " seconds");
         return timeRemaining;
     }
 
-    public int GetHighTidesSurvived()
+    public int GetHighTidesStartedCount()
     {
         int highTideCycleIndex = currentCycleIndex;
 
         if (currentTide == TideState.Rising)
         {
-            highTideCycleIndex = currentCycleIndex;
+            highTideCycleIndex = currentCycleIndex + 1;
         }
         else if (currentTide == TideState.High)
         {
