@@ -51,11 +51,14 @@ public class TidesManager : Singleton<TidesManager>
             Debug.Log("waveHeight set to " + tideCyclesSO.tideCycles[currentCycleIndex].WaveHeight);
             setWaveShaderVariables.waveHeight = tideCyclesSO.tideCycles[currentCycleIndex].WaveHeight;
 
+
         }
         else if (currentTide == TideState.Rising)
         {
             currentTide = TideState.High;
             // Additional logic for high tide
+            UpdateWaterNavBlocker(setWaveShaderVariables.waveHeight);
+
         }
         else if (currentTide == TideState.High)
         {
@@ -64,7 +67,7 @@ public class TidesManager : Singleton<TidesManager>
             waveAnimator.SetBool("GoingUp", false);
             Debug.Log("restHeight set to " + tideCyclesSO.tideCycles[currentCycleIndex].RestHeight);
             setWaveShaderVariables.restHeight = tideCyclesSO.tideCycles[currentCycleIndex].RestHeight;
-            UpdateWaterNavBlocker();
+            UpdateWaterNavBlocker(setWaveShaderVariables.restHeight);
             SurvivorsController.Instance.AddAgeToAll(1);
 
         }
@@ -79,11 +82,11 @@ public class TidesManager : Singleton<TidesManager>
 
     }
 
-    void UpdateWaterNavBlocker()
+    void UpdateWaterNavBlocker(float waterheight)
     {
         if (waterNavBlocker != null)
         {
-            float waterNavBlockerHeight = setWaveShaderVariables.restHeight + 0.5f; // Adjust the height as needed
+            float waterNavBlockerHeight = waterheight + 0.5f; // Adjust the height as needed
             waterNavBlocker.transform.position = new Vector3(waterNavBlocker.transform.position.x, waterNavBlockerHeight, waterNavBlocker.transform.position.z);
             // waterNavBlocker.SetActive(true);
 

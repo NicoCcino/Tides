@@ -17,6 +17,8 @@ public class BuildingState : ASurvivorState
 
     public override void Exit()
     {
+        Debug.Log("Survivor exiting building state");
+
         isBuilding = false;
         survivorController.animator.SetTrigger("stopBuild");
     }
@@ -52,6 +54,7 @@ public class BuildingState : ASurvivorState
     }
     private void StartBuilding()
     {
+        Debug.Log("Survivor started building");
         isBuilding = true;
 
         survivorController.agent.ResetPath();

@@ -20,6 +20,11 @@ namespace Tides.Resources
         {
             Resource.OnAmountChanged -= OnResourceAmountChanged;
         }
+
+        private void OnEnable()
+        {
+            Initialize(ResourceType, 5);
+        }
         public void Initialize(ResourceType resourceType, int amount)
         {
             this.ResourceType = resourceType;
@@ -44,9 +49,10 @@ namespace Tides.Resources
         {
             float scale = scaleCurve.Evaluate(newAmount / baseAmount);
             transform.localScale = new Vector3(scale, scale, scale);
-            CancelJobs();
-
-            //TODO : Despawn ressource
+            if (newAmount <= 0)
+            {
+                CancelJobs();
+            }
         }
     }
     public partial class GatherPointBehaviour : IJobProvider

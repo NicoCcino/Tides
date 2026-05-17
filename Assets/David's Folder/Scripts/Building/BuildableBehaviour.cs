@@ -24,6 +24,7 @@ public partial class BuildableBehaviour : MonoBehaviour, IPointerDownHandler
 
     public void TickUpdateProgress()
     {
+        Debug.Log("TickUpdateProgress called. Current progress: " + BuildingProgress);
         BuildingProgress += (1 / buildingTime) * Time.deltaTime;
         UpdateProgress(BuildingProgress);
     }
