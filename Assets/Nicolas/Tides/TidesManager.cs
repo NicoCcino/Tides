@@ -26,6 +26,8 @@ public class TidesManager : Singleton<TidesManager>
     public TideCyclesSO tideCyclesSO;
     public Transform waveTransform;
 
+    public Transform waveRandomOrient;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -57,10 +59,13 @@ public class TidesManager : Singleton<TidesManager>
         {
             currentTide = TideState.Rising;
             // Additional logic for rising tide
+
+            Quaternion randomRotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
+            waveRandomOrient.rotation = randomRotation;
+
             waveAnimator.SetBool("GoingUp", true);
             Debug.Log("waveHeight set to " + tideCyclesSO.tideCycles[currentCycleIndex].WaveHeight);
             setWaveShaderVariables.waveHeight = tideCyclesSO.tideCycles[currentCycleIndex].WaveHeight;
-
             tideChangeInterval = tideDurationRising;
 
             CameraShake.Instance.ShakeCamera(tideDurationRising, 3);

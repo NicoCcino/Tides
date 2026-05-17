@@ -11046,6 +11046,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   dontDestroyOnLoad: 1
   tideChangeInterval: 30
+  tideDurationLow: 20
+  tideDurationHigh: 5
+  tideDurationLowering: 5
+  tideDurationRising: 20
   tideTimer: 0
   currentTide: 3
   currentCycleIndex: 0
@@ -11054,6 +11058,7 @@ MonoBehaviour:
   setWaveShaderVariables: {fileID: 1445005898}
   tideCyclesSO: {fileID: 11400000, guid: fec9b7d9adc474d4ca5987d9ac9a6903, type: 2}
   waveTransform: {fileID: 1445005896}
+  waveRandomOrient: {fileID: 2029051378}
 --- !u!1001 &1861999553
 PrefabInstance:
   m_ObjectHideFlags: 0
