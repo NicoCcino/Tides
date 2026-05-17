@@ -3,7 +3,7 @@ using UnityEngine;
 public class BuildingState : ASurvivorState
 {
     bool isBuilding = false;
-    float buildDistanceThreshold = 3.0f;
+    float buildDistanceThreshold = 1.0f;
     public BuildJob BuildJob { get; set; }
     public BuildingState(SurvivorController survivorController, SurvivorStateManager survivorStateManager) : base(survivorController, survivorStateManager)
     {
