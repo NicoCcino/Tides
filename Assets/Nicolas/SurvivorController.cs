@@ -130,4 +130,11 @@ public class SurvivorController : MonoBehaviour
     {
         Destroy(this.gameObject, seconds);
     }
+
+    public float GetStaminaPercentage()
+    {
+        float staminaPercentage = agent.speed / maxSpeed;
+        // Placeholder for actual stamina logic
+        return staminaPercentage;
+    }
 }
