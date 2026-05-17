@@ -9,7 +9,7 @@ public class TidesManager : Singleton<TidesManager>
 {
 
     public float tideChangeInterval = 30f; // Time in seconds between tide changes
-    private float tideTimer = 0f;
+    public float tideTimer = 0f;
     public enum TideState { Rising, High, Lowering, Low }
     public TideState currentTide = TideState.Low;
     [SerializeField]
