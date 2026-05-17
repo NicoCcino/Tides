@@ -81,6 +81,7 @@ public class SurvivorController : MonoBehaviour
     {
         gatherPointBehaviour = null;
         currentJob = null;
+
         survivorStateManager.ChangeState(ESurvivorState.Idling);
     }
 

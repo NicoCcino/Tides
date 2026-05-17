@@ -10,6 +10,8 @@ public class SurvivorsController : Singleton<SurvivorsController>
     public List<SurvivorController> Survivors = new List<SurvivorController>();
     public List<SurvivorController> survivorsToRemove = new();
 
+    public GameObject survivorPrefab;
+
 
     protected override void Awake()
     {
@@ -117,4 +119,12 @@ public class SurvivorsController : Singleton<SurvivorsController>
             survivor.AddAge(ageToAdd);
         }
     }
+
+    public void SpawnSurvivor(GameObject survivorPrefab, Vector3 spawnPosition)
+    {
+        GameObject newSurvivor = Instantiate(survivorPrefab, spawnPosition, Quaternion.identity);
+        SurvivorController newSurvivorController = newSurvivor.GetComponent<SurvivorController>();
+        Survivors.Add(newSurvivorController);
+    }
+
 }
