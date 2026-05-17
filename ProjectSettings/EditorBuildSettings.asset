@@ -8,5 +8,20 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/David's Folder/Scenes/GameManager.unity
+    guid: cf2e4084f6d8d2241b4127564718f1c5
+  - enabled: 1
+    path: Assets/Scenes/MainScene.unity
+    guid: 9780220d104ebaf43a6b88e243a38ed4
+  - enabled: 1
+    path: Assets/David's Folder/Scenes/VictoryScreen.unity
+    guid: ffa68b9ff023bcc42b4e035900f0508f
+  - enabled: 1
+    path: Assets/David's Folder/Scenes/MainMenu.unity
+    guid: 0671267b792d1d148a12d43a27938ee0
+  - enabled: 1
+    path: Assets/David's Folder/Scenes/DefeatScreen.unity
+    guid: bc3398a2abcf17d4ab75e76757bcceb7
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

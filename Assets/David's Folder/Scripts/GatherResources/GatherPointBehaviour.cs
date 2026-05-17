@@ -48,6 +48,9 @@ namespace Tides.Resources
         {
             float scale = scaleCurve.Evaluate(newAmount / baseAmount);
             transform.localScale = new Vector3(scale, scale, scale);
+            CancelJobs();
+
+            //TODO : Despawn ressource
         }
     }
     public partial class GatherPointBehaviour : IJobProvider
