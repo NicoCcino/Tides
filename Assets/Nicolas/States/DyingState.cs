@@ -42,6 +42,7 @@ public class DyingState : ASurvivorState
         {
             survivorController.AudioSource.clip = survivorController.DieClip;
             survivorController.AudioSource.loop = false;
+            survivorController.AudioSource.volume = 1.2f;
             survivorController.AudioSource.Play();
         }
     }
