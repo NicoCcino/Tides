@@ -4,11 +4,13 @@ public class TidesManager : Singleton<TidesManager>
 {
 
     public float tideChangeInterval = 30f; // Time in seconds between tide changes
-    private float tideTimer = 0f;
+    public float tideTimer = 0f;
     public enum TideState { Rising, High, Lowering, Low }
     public TideState currentTide = TideState.Low;
     [SerializeField]
     public int currentCycleIndex = 0;
+
+    public GameObject waterNavBlocker;
 
     [SerializeField] private Animator waveAnimator;
 
@@ -62,6 +64,7 @@ public class TidesManager : Singleton<TidesManager>
             waveAnimator.SetBool("GoingUp", false);
             Debug.Log("restHeight set to " + tideCyclesSO.tideCycles[currentCycleIndex].RestHeight);
             setWaveShaderVariables.restHeight = tideCyclesSO.tideCycles[currentCycleIndex].RestHeight;
+            UpdateWaterNavBlocker();
             SurvivorsController.Instance.AddAgeToAll(1);
 
         }
@@ -76,6 +79,14 @@ public class TidesManager : Singleton<TidesManager>
 
     }
 
+    void UpdateWaterNavBlocker()
+    {
+        if (waterNavBlocker != null)
+        {
+            float waterNavBlockerHeight = setWaveShaderVariables.restHeight + 0.5f; // Adjust the height as needed
+            waterNavBlocker.transform.position = new Vector3(waterNavBlocker.transform.position.x, waterNavBlockerHeight, waterNavBlocker.transform.position.z);
+            // waterNavBlocker.SetActive(true);
 
-
+        }
+    }
 }
