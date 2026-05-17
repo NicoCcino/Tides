@@ -36,6 +36,7 @@ public class SurvivorController : MonoBehaviour
     public AudioSource AudioSource;
     public AudioClip GatherClip;
     public AudioClip BuildClip;
+    public AudioClip DieClip;
 
     public void Awake()
     {
