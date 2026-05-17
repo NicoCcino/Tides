@@ -1,3 +1,4 @@
+using David.Utils;
 using Tides.Resources;
 using UnityEngine;
 using UnityEngine.AI;
@@ -52,7 +53,19 @@ public class SurvivorController : MonoBehaviour
     {
         UpdateAnim();
     }
-
+    void FixedUpdate()
+    {
+        if (isDying) return;
+        if (TidesManager.Instance.currentTide == TidesManager.TideState.Rising)
+        {
+            Transform waveTransform = TidesManager.Instance.waveTransform;
+            if (!PlaneProjectionHelper.IsPointInFrontOfPlane(waveTransform.position, waveTransform.forward, transform.position) && transform.position.y < TidesManager.Instance.tideCyclesSO.tideCycles[TidesManager.Instance.currentCycleIndex].WaveHeight)
+            {
+                Debug.Log("KILL SURVIVOR");
+                Die();
+            }
+        }
+    }
     public void GoTo(Vector3 targetPosition)
     {
         agent.SetDestination(targetPosition);
@@ -85,7 +98,6 @@ public class SurvivorController : MonoBehaviour
     {
         gatherPointBehaviour = null;
         currentJob = null;
-
         survivorStateManager.ChangeState(ESurvivorState.Idling);
     }
 
@@ -111,6 +123,7 @@ public class SurvivorController : MonoBehaviour
 
     public void Die()
     {
+        currentJob.JobProvider.RemoveJob();
         survivorStateManager.ChangeState(ESurvivorState.Dying);
     }
     public void DestroyThis(float seconds)
