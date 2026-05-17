@@ -105,7 +105,7 @@ public class SurvivorController : MonoBehaviour
         agent.speed = speed;
     }
 
-    void Die()
+    public void Die()
     {
         survivorStateManager.ChangeState(ESurvivorState.Dying);
     }

@@ -1,3 +1,4 @@
+using Tides.Resources;
 using UnityEngine;
 
 public class TidesManager : Singleton<TidesManager>
@@ -77,6 +78,18 @@ public class TidesManager : Singleton<TidesManager>
             UpdateWaterNavBlocker(setWaveShaderVariables.waveHeight);
 
             tideChangeInterval = tideDurationHigh;
+
+            foreach (SurvivorController survivor in SurvivorsController.Instance.Survivors)
+            {
+                if (!ResourcesManager.Instance.TryConsumeFood(ResourcesManager.Instance.FoodConsumptionPerSurvivor))
+                {
+                    survivor.Die();
+                }
+                else
+                {
+                    //TODO : Survivor eat 
+                }
+            }
         }
         else if (currentTide == TideState.High)
         {
