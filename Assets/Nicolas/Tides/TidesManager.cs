@@ -1,9 +1,17 @@
+using Tides.Resources;
 using UnityEngine;
 
 public class TidesManager : Singleton<TidesManager>
 {
 
-    public float tideChangeInterval = 30f; // Time in seconds between tide changes
+    public float tideChangeInterval; // Time in seconds between tide changes
+    public float tideDurationLow = 20f;
+    public float tideDurationHigh = 5f;
+
+    public float tideDurationLowering = 5f;
+
+    public float tideDurationRising = 20f;
+
     public float tideTimer = 0f;
     public enum TideState { Rising, High, Lowering, Low }
     public TideState currentTide = TideState.Low;
@@ -19,14 +27,18 @@ public class TidesManager : Singleton<TidesManager>
     public TideCyclesSO tideCyclesSO;
     public Transform waveTransform;
 
+    public Transform waveRandomOrient;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // Starting at TideState.Low.
+        tideChangeInterval = tideDurationLow;
+
         setWaveShaderVariables.waveHeight = tideCyclesSO.tideCycles[currentCycleIndex].WaveHeight;
         setWaveShaderVariables.restHeight = tideCyclesSO.tideCycles[currentCycleIndex].RestHeight;
     }
-
 
     // Update is called once per frame
     void Update()
@@ -48,11 +60,16 @@ public class TidesManager : Singleton<TidesManager>
         {
             currentTide = TideState.Rising;
             // Additional logic for rising tide
+
+            Quaternion randomRotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
+            waveRandomOrient.rotation = randomRotation;
+
             waveAnimator.SetBool("GoingUp", true);
             Debug.Log("waveHeight set to " + tideCyclesSO.tideCycles[currentCycleIndex].WaveHeight);
             setWaveShaderVariables.waveHeight = tideCyclesSO.tideCycles[currentCycleIndex].WaveHeight;
+            tideChangeInterval = tideDurationRising;
 
-
+            CameraShake.Instance.ShakeCamera(tideDurationRising, 3);
         }
         else if (currentTide == TideState.Rising)
         {
@@ -60,6 +77,19 @@ public class TidesManager : Singleton<TidesManager>
             // Additional logic for high tide
             UpdateWaterNavBlocker(setWaveShaderVariables.waveHeight);
 
+            tideChangeInterval = tideDurationHigh;
+
+            foreach (SurvivorController survivor in SurvivorsController.Instance.Survivors)
+            {
+                if (!ResourcesManager.Instance.TryConsumeFood(ResourcesManager.Instance.FoodConsumptionPerSurvivor))
+                {
+                    survivor.Die();
+                }
+                else
+                {
+                    //TODO : Survivor eat 
+                }
+            }
         }
         else if (currentTide == TideState.High)
         {
@@ -71,12 +101,18 @@ public class TidesManager : Singleton<TidesManager>
             UpdateWaterNavBlocker(setWaveShaderVariables.restHeight);
             SurvivorsController.Instance.AddAgeToAll(1);
 
+            tideChangeInterval = tideDurationLowering;
+            CameraShake.Instance.ShakeCamera(tideDurationLowering, 1);
         }
         else if (currentTide == TideState.Lowering)
         {
             currentTide = TideState.Low;
             // Additional logic for low tide
             currentCycleIndex++;
+
+            tideChangeInterval = tideDurationLow;
+
+
         }
 
         Debug.Log("Tide changed to: " + currentTide);

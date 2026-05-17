@@ -1,4 +1,5 @@
 using NaughtyAttributes;
+using Unity.VisualScripting;
 using UnityEngine;
 namespace Tides.Resources
 {
@@ -9,6 +10,8 @@ namespace Tides.Resources
         public WoodResource WoodResource;
         [SerializeField] private int defaultFood = 25;
         [SerializeField] private int defaultWood = 25;
+
+        [SerializeField] public int FoodConsumptionPerSurvivor = 5;
         private void OnEnable()
         {
             FoodResource = new FoodResource(defaultFood);

@@ -7,6 +7,13 @@ public class UINextTides : MonoBehaviour
     public TidesManager tidesManager;
     public TMPro.TextMeshProUGUI[] tidesNumberTexts;
     public TMPro.TextMeshProUGUI[] tidesHeightTexts;
+
+    [SerializeField]
+    Color lightBlue = new Color(0.55f, 0.8f, 0.95f);
+
+    [SerializeField]
+    Color darkBlue = new Color(0.02f, 0.15f, 0.35f);
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -30,6 +37,10 @@ public class UINextTides : MonoBehaviour
 
             tidesNumberTexts[i].text = $"Tide {tideIndex}";
             tidesHeightTexts[i].text = $"Height: {tidesManager.tideCyclesSO.tideCycles[tideIndex].tideCoefficient}";
+
+            Color newColor = Color.Lerp(lightBlue, darkBlue, tidesManager.tideCyclesSO.tideCycles[tideIndex].tideCoefficient / 4f);
+
+            tidesHeightTexts[i].color = newColor;
         }
     }
 }
