@@ -100,13 +100,19 @@ public class GatheringState : ASurvivorState
 
                 if (survivorController.resourceInInventory.GetAmount() >= survivorController.maxLoad)
                 {
+                    Debug.Log("Survivor returning to base with full load");
+
                     // Go back home with full load
                     survivorStateManager.ChangeState(ESurvivorState.GoingToBase);
                 }
             }
 
         }
-        CheckDistance();
+        else
+        {
+            CheckDistance();
+
+        }
     }
 
     private void CheckDistance()

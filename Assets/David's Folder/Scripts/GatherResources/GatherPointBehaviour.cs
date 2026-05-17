@@ -57,7 +57,6 @@ namespace Tides.Resources
             affectedTransform.localScale = new Vector3(scale, scale, scale);
             if (newAmount <= 0)
             {
-                CancelJobs();
                 AssignedWorkersCount = 0;
                 Hide();
             }
