@@ -123,6 +123,7 @@ public class SurvivorsController : Singleton<SurvivorsController>
     public void SpawnSurvivor(GameObject survivorPrefab, Vector3 spawnPosition)
     {
         GameObject newSurvivor = Instantiate(survivorPrefab, spawnPosition, Quaternion.identity);
+        newSurvivor.transform.parent = transform;
         SurvivorController newSurvivorController = newSurvivor.GetComponent<SurvivorController>();
         Survivors.Add(newSurvivorController);
     }
