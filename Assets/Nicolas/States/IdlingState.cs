@@ -8,6 +8,7 @@ public class IdlingState : ASurvivorState
 
     public override void Enter()
     {
+        survivorController.agent.ResetPath();
         Debug.Log("Survivor entered idle state");
         // survivorStateManager.ChangeState(ESurvivorState.Gathering);
         if (survivorController.currentJob != null)
