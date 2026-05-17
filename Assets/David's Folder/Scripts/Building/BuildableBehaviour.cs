@@ -32,6 +32,7 @@ public partial class BuildableBehaviour : MonoBehaviour, IPointerDownHandler
     {
         visualProgressEffect.UpdateVisual(amount);
         //previewGameObject.SetActive(amount <= 0);
+        BuildingProgress = amount;
         if (amount >= 1.0f)
         {
             SpawnBuilding();
