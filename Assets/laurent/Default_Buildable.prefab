@@ -52,7 +52,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6358565811588628652
 RectTransform:
   m_ObjectHideFlags: 0
@@ -941,6 +941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b9e34375d5b3784297d087ecf58ec33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JobableBehaviour
+  ControlsUIDisplayal: 0
   JobableControlsGameObject: {fileID: 593311744342069080}
 --- !u!1 &4688309325173146715
 GameObject:
