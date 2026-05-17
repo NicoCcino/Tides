@@ -8069,7 +8069,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   dontDestroyOnLoad: 1
-  tideChangeInterval: 5
+  tideChangeInterval: 30
   currentTide: 3
   currentCycleIndex: 0
   waveAnimator: {fileID: 1445005897}
