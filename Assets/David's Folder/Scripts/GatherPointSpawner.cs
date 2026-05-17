@@ -14,6 +14,11 @@ public class GatherPointSpawner : MonoBehaviour
     [SerializeField] private GameObject woodGatherPointBehaviourPrefab;
     [SerializeField] private Texture2D heightBakeTexture;
     [SerializeField] private Transform waveTransform;
+    [SerializeField] private Vector3 worldCenter;
+    [SerializeField] private Vector3 worldSize = new Vector3(200, 20, 200);
+    [SerializeField] private int minYOffset = -5;
+    [SerializeField] private int maxYOffset = 0;
+
     private GatherPointBehaviour[] GatherPoints;
     private List<Vector3> CurrentSpawningCoordinates;
     private int spawningIndex;
@@ -73,28 +78,70 @@ public class GatherPointSpawner : MonoBehaviour
         }
 
         GatherPoints[spawningIndex] = gatherPoint.GetComponent<GatherPointBehaviour>();
-        GatherPoints[spawningIndex].Initialize(resourceType, Mathf.Abs(Mathf.CeilToInt(position.y) * GatherPointDefaultResourceAmount));
+        GatherPoints[spawningIndex].Initialize(resourceType, Mathf.Abs(Mathf.CeilToInt(position.y - 1) * GatherPointDefaultResourceAmount));
         spawningIndex = (spawningIndex + 1) % GatherPointAmount;
     }
     public Vector3[] GetRandomSpawnPositions()
     {
         Vector3[] spawnPoints = new Vector3[GatherPointAmount];
-        //TODO : Implement random positions generation
+        if (heightBakeTexture == null) return spawnPoints;
+
+        int texWidth = heightBakeTexture.width;
+        int texHeight = heightBakeTexture.height;
+        int count = 0;
+        int attempts = 0;
+        int maxAttempts = GatherPointAmount * 50;
+
+        while (count < GatherPointAmount && attempts < maxAttempts)
+        {
+            attempts++;
+            int u = Random.Range(0, texWidth);
+            int v = Random.Range(0, texHeight);
+
+            Color pixel = heightBakeTexture.GetPixel(u, v);
+
+            // R < 0.5f (Height)
+            // G > 0 (Valid area)
+            if (pixel.r < 0.5f && pixel.g > 0.5f)
+            {
+                float x = worldCenter.x + ((float)u / texWidth - 0.5f) * worldSize.x;
+                float z = worldCenter.z + ((float)v / texHeight - 0.5f) * worldSize.z;
+
+                // Map R [0, 0.5] to [minYOffset, maxYOffset] as an integer
+                float normalizedR = pixel.r / 0.5f;
+                int yOffset = Mathf.RoundToInt(Mathf.Lerp(minYOffset, maxYOffset, normalizedR));
+
+                // Final world Y (allowing negative values as per requested mapping)
+                float y = worldCenter.y + yOffset;
+                spawnPoints[count] = new Vector3(x, y, z);
+                count++;
+            }
+        }
+
         return spawnPoints;
     }
+
+    private float lastSpawnTime;
+    [SerializeField] private float spawnCooldown = 0.1f;
 
     private void FixedUpdate()
     {
         if (TidesManager.Instance.currentTide == TidesManager.TideState.Rising)
         {
-            foreach (GatherPointBehaviour gatherPointBehaviour in GatherPoints)
+            for (int i = 0; i < GatherPoints.Length; i++)
             {
-                if (!PlaneProjectionHelper.IsPointInFrontOfPlane(waveTransform.transform.position, waveTransform.forward, gatherPointBehaviour.transform.position))
+                GatherPointBehaviour point = GatherPoints[i];
+                if (point == null) continue;
+
+                // If wave is rising and point is now behind the wave front, despawn it
+                if (!PlaneProjectionHelper.IsPointInFrontOfPlane(waveTransform.position, waveTransform.forward, point.transform.position))
                 {
-                    if (gatherPointBehaviour.ResourceType == ResourceType.FOOD)
-                        foodPool.Release(gatherPointBehaviour.gameObject);
+                    if (point.ResourceType == ResourceType.FOOD)
+                        foodPool.Release(point.gameObject);
                     else
-                        woodPool.Release(gatherPointBehaviour.gameObject);
+                        woodPool.Release(point.gameObject);
+
+                    GatherPoints[i] = null;
                 }
             }
             return;
@@ -103,25 +150,32 @@ public class GatherPointSpawner : MonoBehaviour
         if (TidesManager.Instance.currentTide == TidesManager.TideState.Lowering)
         {
             if (CurrentSpawningCoordinates == null)
-                CurrentSpawningCoordinates = GetRandomSpawnPositions().ToList();
-
-            Vector3 point = CurrentSpawningCoordinates.FirstOrDefault(s => PlaneProjectionHelper.IsPointInFrontOfPlane(waveTransform.transform.position, waveTransform.forward, s));
-            if (point == null)
             {
-                return;
+                CurrentSpawningCoordinates = GetRandomSpawnPositions().ToList();
+                spawningIndex = 0;
             }
-            CurrentSpawningCoordinates.Remove(point);
-            SpawnPoint(point, (ResourceType)Random.Range(1, 3));
+
+            if (Time.time < lastSpawnTime + spawnCooldown) return;
+
+            // When tide is lowering, we want to spawn points that the wave has passed.
+            // These points are now BEHIND the wave plane (IsPointInFrontOfPlane == false).
+            Vector3 spawnPos = CurrentSpawningCoordinates.FirstOrDefault(s => PlaneProjectionHelper.IsPointInFrontOfPlane(waveTransform.position, waveTransform.forward, s));
+
+            if (spawnPos != default)
+            {
+                CurrentSpawningCoordinates.Remove(spawnPos);
+                SpawnPoint(spawnPos, (ResourceType)Random.Range(1, 3));
+                lastSpawnTime = Time.time;
+            }
         }
         else
         {
             if (CurrentSpawningCoordinates != null)
                 CurrentSpawningCoordinates = null;
-            spawningIndex = 0;
         }
     }
     [Button("Spawn Debug")]
-    private void DebugSpawnPoint()
+    private void DebugSpawnPoints()
     {
         SpawnPoint(Vector3.zero, ResourceType.WOOD);
     }

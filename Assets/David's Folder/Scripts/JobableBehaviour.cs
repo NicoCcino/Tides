@@ -13,7 +13,10 @@ public class JobableBehaviour : MonoBehaviour, IPointerDownHandler
         if (!ControlsUIDisplayal) return;
         JobableControlsGameObject.SetActive(true);
     }
-
+    private void OnDisable()
+    {
+        JobableControlsGameObject.SetActive(false);
+    }
     private void Awake()
     {
         Jobable = GetComponentInParent<IJobProvider>();
