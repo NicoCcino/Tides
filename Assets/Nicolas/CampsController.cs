@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class CampsController : Singleton<CampsController>
 {
@@ -32,15 +33,32 @@ public class CampsController : Singleton<CampsController>
         float closestDistance = Mathf.Infinity;
         Vector3 survivorPosition = survivor.transform.position;
 
-        foreach (CampController camp in Camps)
+        int nextWaveHeight = TidesManager.Instance.tideCyclesSO.tideCycles[TidesManager.Instance.currentCycleIndex].WaveHeight;
+        CampController[] safeCamps = Camps.Where(c => c.transform.position.y > nextWaveHeight && c.IsAvailable).ToArray();
+        if (safeCamps.Length == 0)
         {
-            if (!camp.IsAvailable) continue;
-
-            float distance = Vector3.Distance(survivorPosition, camp.transform.position);
-            if (distance < closestDistance)
+            foreach (CampController camp in Camps)
             {
-                closestDistance = distance;
-                closestCamp = camp;
+                if (!camp.IsAvailable) continue;
+                float distance = Vector3.Distance(survivorPosition, camp.transform.position);
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestCamp = camp;
+                }
+            }
+        }
+        else
+        {
+            foreach (CampController camp in safeCamps)
+            {
+                if (!camp.IsAvailable) continue;
+                float distance = Vector3.Distance(survivorPosition, camp.transform.position);
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestCamp = camp;
+                }
             }
         }
 
