@@ -18,6 +18,7 @@ public class BuildingState : ASurvivorState
     public override void Exit()
     {
         isBuilding = false;
+        survivorController.animator.SetTrigger("stopBuild");
     }
 
     public override void Update()
