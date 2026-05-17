@@ -38,4 +38,8 @@ public class ClickableMaterialModifier : MonoBehaviour, IPointerDownHandler, IPo
             rend.SetPropertyBlock(null);
         }
     }
+    private void OnDisable()
+    {
+        OnPointerUp(null);
+    }
 }
