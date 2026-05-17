@@ -61,6 +61,10 @@ PrefabInstance:
       value: rocks_smallB
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 99e1350495558454bb0c2efe8860b106, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 99e1350495558454bb0c2efe8860b106, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
