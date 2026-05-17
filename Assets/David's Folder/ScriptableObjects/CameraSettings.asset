@@ -20,3 +20,5 @@ MonoBehaviour:
     <DefaultHeight>k__BackingField: 15
     <TiltAngle>k__BackingField: 70
     <Smoothing>k__BackingField: 20
+    <MinBounds>k__BackingField: {x: -64, y: -64}
+    <MaxBounds>k__BackingField: {x: 64, y: 64}

@@ -36,6 +36,7 @@ public class SurvivorController : MonoBehaviour
     public AudioSource AudioSource;
     public AudioClip GatherClip;
     public AudioClip BuildClip;
+    public AudioClip DieClip;
 
     public void Awake()
     {
@@ -59,6 +60,7 @@ public class SurvivorController : MonoBehaviour
         if (TidesManager.Instance.currentTide == TidesManager.TideState.Rising)
         {
             Transform waveTransform = TidesManager.Instance.waveTransform;
+            Debug.Log(TidesManager.Instance.tideCyclesSO.tideCycles[TidesManager.Instance.currentCycleIndex].WaveHeight);
             if (!PlaneProjectionHelper.IsPointInFrontOfPlane(waveTransform.position, waveTransform.forward, transform.position) && transform.position.y < TidesManager.Instance.tideCyclesSO.tideCycles[TidesManager.Instance.currentCycleIndex].WaveHeight)
             {
                 Debug.Log("KILL SURVIVOR");
@@ -123,7 +125,8 @@ public class SurvivorController : MonoBehaviour
 
     public void Die()
     {
-        currentJob.JobProvider.RemoveJob();
+        if (currentJob != null)
+            currentJob.JobProvider.RemoveJob();
         survivorStateManager.ChangeState(ESurvivorState.Dying);
     }
     public void DestroyThis(float seconds)

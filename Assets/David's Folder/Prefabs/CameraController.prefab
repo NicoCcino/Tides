@@ -213,6 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd91145c5bd5b7542b4584c984533c92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraShake
+  dontDestroyOnLoad: 0
   camTransform: {fileID: 8716294927703398303}
   shakeDuration: 1
   shakeAmount: 0.7

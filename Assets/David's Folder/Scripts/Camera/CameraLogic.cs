@@ -17,6 +17,8 @@ namespace Tides.Camera
             targetPosition = initialPosition;
             currentHeight = initialPosition.y;
 
+            ApplyBounds();
+
             CurrentPosition = targetPosition;
             CurrentRotation = Quaternion.Euler(this.settings.TiltAngle, 0, 0);
         }
@@ -30,6 +32,8 @@ namespace Tides.Camera
                 float speedMultiplier = currentHeight * settings.PanSpeed * 0.5f * deltaTime;
                 Vector3 moveDelta = new Vector3(-input.PanDelta.x, 0, -input.PanDelta.y) * speedMultiplier;
                 targetPosition += moveDelta;
+
+                ApplyBounds();
             }
 
             // Zooming
@@ -45,6 +49,12 @@ namespace Tides.Camera
             float lerpFactor = 1f - Mathf.Exp(-settings.Smoothing * deltaTime);
             CurrentPosition = Vector3.Lerp(CurrentPosition, targetPosition, lerpFactor);
             CurrentRotation = Quaternion.Slerp(CurrentRotation, Quaternion.Euler(settings.TiltAngle, 0, 0), lerpFactor);
+        }
+
+        private void ApplyBounds()
+        {
+            targetPosition.x = Mathf.Clamp(targetPosition.x, settings.MinBounds.x, settings.MaxBounds.x);
+            targetPosition.z = Mathf.Clamp(targetPosition.z, settings.MinBounds.y, settings.MaxBounds.y);
         }
     }
 }

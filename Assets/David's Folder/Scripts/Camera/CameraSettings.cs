@@ -13,6 +13,8 @@ namespace Tides.Camera
         [field: SerializeField] public float DefaultHeight { get; private set; } = 20f;
         [field: SerializeField] public float TiltAngle { get; private set; } = 45f;
         [field: SerializeField] public float Smoothing { get; private set; } = 10f;
+        [field: SerializeField] public Vector2 MinBounds { get; private set; } = new Vector2(-100f, -100f);
+        [field: SerializeField] public Vector2 MaxBounds { get; private set; } = new Vector2(100f, 100f);
     }
 
 }

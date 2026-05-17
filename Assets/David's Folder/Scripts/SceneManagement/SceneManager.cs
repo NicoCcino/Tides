@@ -25,12 +25,15 @@ namespace WiDiD.SceneManagement
 		int m_ScenesCurrentlyLoading = 0;
 		int m_ScenesCurrentlyUnloading = 0;
 
-		public async void LoadSceneSet(SceneSet set, bool safeLoad = true, System.Action OnSetLoaded = null)
+		public async void LoadSceneSet(SceneSet set, bool safeLoad = true, bool showLoadingScreen = true, System.Action OnSetLoaded = null)
 		{
 			if (m_ShowDebugLog) Debug.Log($"Loading {set.Scenes.Count} scenes...");
 
-			m_LoadingScreenCanvas.Fade(true);
-			await UniTask.WaitForSeconds(0.5f);
+			if (showLoadingScreen)
+			{
+				m_LoadingScreenCanvas.Fade(true);
+				await UniTask.WaitForSeconds(0.5f);
+			}
 
 			m_ScenesCurrentlyLoading = set.Scenes.Count;
 			System.Action<AsyncOperation> callback = (ao) => SetSceneActiveCallback(set.ActiveScene, OnSetLoaded);
@@ -47,11 +50,17 @@ namespace WiDiD.SceneManagement
 			}
 		}
 
-		public async void UnloadSceneSet(SceneSet set, bool safeUnload = true, bool destroyAllObjects = false, System.Action OnSetUnloaded = null)
+		public async void UnloadSceneSet(SceneSet set, bool safeUnload = true, bool showLoadingScreen = true, bool destroyAllObjects = false, System.Action OnSetUnloaded = null)
 		{
 			var scenesToUnload = set.Scenes.FindAll(s => set.ActiveScene == null || s.ScenePath != set.ActiveScene.ScenePath);
 
 			if (m_ShowDebugLog) Debug.Log($"Unloading {scenesToUnload.Count} scenes (skipped active scene: {set.ActiveScene?.ScenePath})...");
+
+			if (showLoadingScreen)
+			{
+				m_LoadingScreenCanvas.Fade(true);
+				await UniTask.WaitForSeconds(0.5f);
+			}
 
 			System.Action<AsyncOperation> callback = FadeOffCanvas;
 			if (OnSetUnloaded != null)
@@ -59,14 +68,14 @@ namespace WiDiD.SceneManagement
 				m_ScenesCurrentlyUnloading = scenesToUnload.Count;
 				callback = (ao) =>
 				{
-					FadeOffCanvas(ao);
+					if (showLoadingScreen) FadeOffCanvas(ao);
 					UnloadCallback(OnSetUnloaded);
 				};
 			}
 
 			if (scenesToUnload.Count == 0)
 			{
-				FadeOffCanvas(null);
+				if (showLoadingScreen) FadeOffCanvas(null);
 				OnSetUnloaded?.Invoke();
 				return;
 			}

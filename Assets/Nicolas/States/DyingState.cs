@@ -36,6 +36,15 @@ public class DyingState : ASurvivorState
         }
         // Delete survivor after some time to allow death animation to play
         survivorController.DestroyThis(5f);
+
+        //Audio
+        if (survivorController.AudioSource != null && survivorController.DieClip != null)
+        {
+            survivorController.AudioSource.clip = survivorController.DieClip;
+            survivorController.AudioSource.loop = false;
+            survivorController.AudioSource.volume = 1.2f;
+            survivorController.AudioSource.Play();
+        }
     }
 
     public override void Exit()
