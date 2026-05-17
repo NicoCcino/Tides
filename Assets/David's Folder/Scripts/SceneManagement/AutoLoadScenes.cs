@@ -66,7 +66,7 @@ namespace WiDiD.SceneManagement
 			}
 			if (pScenesToLoad != null)
 			{
-				WiDiD.SceneManagement.SceneManager.Instance.LoadSceneSet(pScenesToLoad, true, OnLoadingFinished);
+				WiDiD.SceneManagement.SceneManager.Instance.LoadSceneSet(pScenesToLoad, true, true, OnLoadingFinished);
 			}
 		}
 
