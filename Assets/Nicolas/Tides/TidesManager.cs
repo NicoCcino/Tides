@@ -13,7 +13,7 @@ public class TidesManager : Singleton<TidesManager>
     public enum TideState { Rising, High, Lowering, Low }
     public TideState currentTide = TideState.Low;
     [SerializeField]
-    private int currentCycleIndex = 0;
+    public int currentCycleIndex = 0;
 
     [SerializeField] private Animator waveAnimator;
 
