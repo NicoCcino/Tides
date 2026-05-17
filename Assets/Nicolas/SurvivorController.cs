@@ -106,14 +106,14 @@ public class SurvivorController : MonoBehaviour
     public void AddAge(int ageToAdd)
     {
         age += ageToAdd;
-        if (age > maxAge)
-        {
-            Die();
-        }
-        else
-        {
-            UpdateSpeedBasedOnAge();
-        }
+        // if (age > maxAge)
+        // {
+        //     Die();
+        // }
+        // else
+        // {
+        UpdateSpeedBasedOnAge();
+        // }
         Debug.Log($"Survivor {name} is now {age} years old.");
     }
 
@@ -132,5 +132,12 @@ public class SurvivorController : MonoBehaviour
     public void DestroyThis(float seconds)
     {
         Destroy(this.gameObject, seconds);
+    }
+
+    public float GetStaminaPercentage()
+    {
+        float staminaPercentage = agent.speed / maxSpeed;
+        // Placeholder for actual stamina logic
+        return staminaPercentage;
     }
 }

@@ -12,7 +12,7 @@ public class GatheringState : ASurvivorState
     public Vector3 basePosition;
     private float gatherTimer;
     private bool isGathering;
-    private float gatherDuration = 5.97f;
+    private float gatherDuration = 5.97f / 2;
     public float gatherDistanceThreshold = 0.5f;
 
 
@@ -42,7 +42,7 @@ public class GatheringState : ASurvivorState
 
         survivorController.GoTo(gatherPointBehaviour.transform.position);
         //Audio
-        if(survivorController.AudioSource != null && survivorController.GatherClip != null)
+        if (survivorController.AudioSource != null && survivorController.GatherClip != null)
         {
             survivorController.AudioSource.clip = survivorController.GatherClip;
             survivorController.AudioSource.Play();
@@ -107,7 +107,6 @@ public class GatheringState : ASurvivorState
 
         }
         CheckDistance();
-
     }
 
     private void CheckDistance()
