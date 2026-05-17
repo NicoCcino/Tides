@@ -6687,10 +6687,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1495289177852384090, guid: 4b7b1a0d22c63d146be55ee9c8472c49, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 70
-      objectReference: {fileID: 0}
-    - target: {fileID: 1495289177852384090, guid: 4b7b1a0d22c63d146be55ee9c8472c49, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
@@ -6855,10 +6851,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4309419144757789381, guid: 4b7b1a0d22c63d146be55ee9c8472c49, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 65
-      objectReference: {fileID: 0}
-    - target: {fileID: 4309419144757789381, guid: 4b7b1a0d22c63d146be55ee9c8472c49, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
@@ -6903,10 +6895,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5100211603334781514, guid: 4b7b1a0d22c63d146be55ee9c8472c49, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 70
-      objectReference: {fileID: 0}
-    - target: {fileID: 5100211603334781514, guid: 4b7b1a0d22c63d146be55ee9c8472c49, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
@@ -6949,10 +6937,6 @@ PrefabInstance:
     - target: {fileID: 5304357877560569292, guid: 4b7b1a0d22c63d146be55ee9c8472c49, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5343172542636333791, guid: 4b7b1a0d22c63d146be55ee9c8472c49, type: 3}
-      propertyPath: resourceType
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5949376041158598809, guid: 4b7b1a0d22c63d146be55ee9c8472c49, type: 3}
       propertyPath: tidesManager
@@ -7055,10 +7039,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7622873548968070101, guid: 4b7b1a0d22c63d146be55ee9c8472c49, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 65
-      objectReference: {fileID: 0}
-    - target: {fileID: 7622873548968070101, guid: 4b7b1a0d22c63d146be55ee9c8472c49, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
@@ -7114,44 +7094,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5988190903945041081, guid: 4b7b1a0d22c63d146be55ee9c8472c49, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4377452618454357713, guid: 4b7b1a0d22c63d146be55ee9c8472c49, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1423756839}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b7b1a0d22c63d146be55ee9c8472c49, type: 3}
---- !u!114 &1423756837 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8757265066616241804, guid: 4b7b1a0d22c63d146be55ee9c8472c49, type: 3}
-  m_PrefabInstance: {fileID: 1423756836}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
---- !u!1 &1423756838 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4377452618454357713, guid: 4b7b1a0d22c63d146be55ee9c8472c49, type: 3}
-  m_PrefabInstance: {fileID: 1423756836}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1423756839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1423756838}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3cea63be021d3646a152e382211e185, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UISurvivorCount
-  textSurvivorAmount: {fileID: 1423756837}
 --- !u!1001 &1424136018
 PrefabInstance:
   m_ObjectHideFlags: 0
