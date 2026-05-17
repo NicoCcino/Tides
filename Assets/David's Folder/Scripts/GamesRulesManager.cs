@@ -19,7 +19,7 @@ public class GamesRulesManager : Singleton<GamesRulesManager>
         }
         if (TidesManager.Instance.currentCycleIndex >= TidesManager.Instance.tideCyclesSO.tideCycles.Count())
         {
-            Debug.Log("GAME OVER. No more camps and stocks.");
+            Debug.Log("GAME OVER. The tide was too high, you took too long to build the boat.");
             GameStateManager.Instance.ChangeState(EGameState.GameOver);
         }
 
