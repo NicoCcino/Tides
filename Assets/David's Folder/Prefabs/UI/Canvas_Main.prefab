@@ -2475,14 +2475,6 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3629062591173388138, guid: f73bf45ab84506b4b9cd934f4422cffa, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 650
-      objectReference: {fileID: 0}
-    - target: {fileID: 3629062591173388138, guid: f73bf45ab84506b4b9cd934f4422cffa, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 700
-      objectReference: {fileID: 0}
-    - target: {fileID: 3629062591173388138, guid: f73bf45ab84506b4b9cd934f4422cffa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -2529,14 +2521,6 @@ PrefabInstance:
     - target: {fileID: 3629062591173388138, guid: f73bf45ab84506b4b9cd934f4422cffa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5573005505683832012, guid: f73bf45ab84506b4b9cd934f4422cffa, type: 3}
-      propertyPath: m_text
-      value: "Your ship has crashed on this small island. \nYou built a camp, but
-        the tide is getting dangerously high!\n\n\u2022 Gather resources to make
-        a camp on higher grounds\n\u2022 Ring the bell to warn your team about the
-        next tide\n\u2022 Find enough resources to rebuild a ship, and save yourself
-        for good !"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
