@@ -59,6 +59,7 @@ public class SurvivorController : MonoBehaviour
         if (TidesManager.Instance.currentTide == TidesManager.TideState.Rising)
         {
             Transform waveTransform = TidesManager.Instance.waveTransform;
+            Debug.Log(TidesManager.Instance.tideCyclesSO.tideCycles[TidesManager.Instance.currentCycleIndex].WaveHeight);
             if (!PlaneProjectionHelper.IsPointInFrontOfPlane(waveTransform.position, waveTransform.forward, transform.position) && transform.position.y < TidesManager.Instance.tideCyclesSO.tideCycles[TidesManager.Instance.currentCycleIndex].WaveHeight)
             {
                 Debug.Log("KILL SURVIVOR");

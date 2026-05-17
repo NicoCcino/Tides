@@ -21,7 +21,7 @@ public class GameStateManager : BaseFSM<EGameState, AGameState>
     {
         Instance = this;
         InitStates();
-        SceneManager.Instance.LoadSceneSet(coreSet, true, OnCoreSetLoaded);
+        SceneManager.Instance.LoadSceneSet(coreSet, true, true, OnCoreSetLoaded);
     }
 
     public override void ChangeState(EGameState newState)
@@ -42,18 +42,30 @@ public class GameStateManager : BaseFSM<EGameState, AGameState>
 
         if (newStateObj != null)
         {
-            if (currentStateObj == null || newStateObj.SceneSet != currentStateObj.SceneSet)
+            if (newStateObj.SceneSet != null && (currentStateObj == null || newStateObj.SceneSet != currentStateObj.SceneSet))
             {
-                SceneManager.Instance.LoadSceneSet(newStateObj.SceneSet);
-                if (currentStateObj != null && currentStateObj.SceneSet != null)
+                bool isEnteringAdditive = IsAdditiveState(newState);
+                bool isExitingAdditive = IsAdditiveState(CurrentState);
+                bool showLoadingScreen = !isEnteringAdditive && !isExitingAdditive;
+
+                // Load the new scene set.
+                SceneManager.Instance.LoadSceneSet(newStateObj.SceneSet, true, showLoadingScreen);
+
+                // Only unload if we're not moving into an additive state (like GameOver/Victory)
+                if (!isEnteringAdditive && currentStateObj != null && currentStateObj.SceneSet != null)
                 {
-                    SceneManager.Instance.UnloadSceneSet(currentStateObj.SceneSet);
+                    SceneManager.Instance.UnloadSceneSet(currentStateObj.SceneSet, true, showLoadingScreen);
                 }
             }
 
             CurrentState = newState;
             newStateObj.Enter();
         }
+    }
+
+    private bool IsAdditiveState(EGameState state)
+    {
+        return state == EGameState.GameOver || state == EGameState.Victory;
     }
 
     public override void InitStates()
