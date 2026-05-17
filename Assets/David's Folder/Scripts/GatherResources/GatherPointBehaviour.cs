@@ -9,6 +9,8 @@ namespace Tides.Resources
         [SerializeField] public ResourceType ResourceType;
         [SerializeField] private AnimationCurve scaleCurve;
         [SerializeField] private Transform affectedTransform;
+        [SerializeField] private GameObject[] visualsGameObjects;
+        [SerializeField]
         public IResource Resource;
         private int baseAmount;
         public bool HasRemainingResources => Resource.GetAmount() > 0;
@@ -24,6 +26,7 @@ namespace Tides.Resources
 
         private void OnEnable()
         {
+            Show();
             Initialize(ResourceType, 5);
             float scale = scaleCurve.Evaluate(1);
             transform.localScale = new Vector3(scale, scale, scale);
@@ -52,10 +55,25 @@ namespace Tides.Resources
         {
             float scale = scaleCurve.Evaluate(newAmount / baseAmount);
             affectedTransform.localScale = new Vector3(scale, scale, scale);
-            //if (newAmount <= 0)
-            //{
-            //    CancelJobs();
-            //}
+            if (newAmount <= 0)
+            {
+                AssignedWorkersCount = 0;
+                Hide();
+            }
+        }
+        private void Hide()
+        {
+            foreach (GameObject visuals in visualsGameObjects)
+            {
+                visuals.SetActive(false);
+            }
+        }
+        private void Show()
+        {
+            foreach (GameObject visuals in visualsGameObjects)
+            {
+                visuals.SetActive(true);
+            }
         }
     }
     public partial class GatherPointBehaviour : IJobProvider
