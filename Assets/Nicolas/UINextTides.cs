@@ -34,9 +34,9 @@ public class UINextTides : MonoBehaviour
         // Implement logic to update the UI with the next tide information
         for (int i = 0; i < tidesNumberTexts.Length; i++)
         {
-            int tideIndex = (int)(currentTideIndex + i);
+            int tideIndex = (int)(tidesManager.GetHighTidesStartedCount() + i);
 
-            tidesNumberTexts[i].text = $"Tide {tidesManager.GetHighTidesStartedCount() + i + 1}";
+            tidesNumberTexts[i].text = $"Tide {tideIndex + 1}";
 
             float timeRemainingBeforeRisingTide = tidesManager.GetTimeRemainingBeforeRisingTide() + (tidesManager.cycleDuration * i);
             tidesRemainingTimeTexts[i].text = $"in {Mathf.Max(0, timeRemainingBeforeRisingTide):F0} seconds";
