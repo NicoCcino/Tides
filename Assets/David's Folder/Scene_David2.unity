@@ -172,6 +172,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2395199062412392521, guid: 4e8a61fc7e1b1dc4b821a82ef4569d04, type: 3}
+      propertyPath: dontDestroyOnLoad
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3944814132007166550, guid: 4e8a61fc7e1b1dc4b821a82ef4569d04, type: 3}
       propertyPath: m_Name
       value: CameraController
@@ -10731,7 +10735,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   dontDestroyOnLoad: 1
-  tideChangeInterval: 30
+  tideChangeInterval: 4
+  tideDurationLow: 5
+  tideDurationHigh: 5
+  tideDurationLowering: 5
+  tideDurationRising: 5
   tideTimer: 0
   currentTide: 3
   currentCycleIndex: 0
