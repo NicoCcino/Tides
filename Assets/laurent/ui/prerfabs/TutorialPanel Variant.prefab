@@ -250,7 +250,7 @@ PrefabInstance:
       value: "Your ship has crashed on this small island. \nYou built a camp, but
         the tide is getting dangerously high!\n\n\u2022 Gather       to make a camp
         on higher grounds\n\u2022 Collect       to feed your crew at each high tide\n\u2022
-        Ring the       to warn your team about the next tide\n\u2022 Find enough
+        Ring the       to warn your crew about the next tide\n\u2022 Find enough
         resources to rebuild a ship, and save yourself for good !"
       objectReference: {fileID: 0}
     - target: {fileID: 1903813845382653219, guid: 2f91bf2414f206e4783bae3a69259a8d, type: 3}
