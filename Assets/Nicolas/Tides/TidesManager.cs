@@ -68,7 +68,7 @@ public class TidesManager : Singleton<TidesManager>
             setWaveShaderVariables.waveHeight = tideCyclesSO.tideCycles[currentCycleIndex].WaveHeight;
             tideChangeInterval = tideDurationRising;
 
-
+            CameraShake.Instance.ShakeCamera(tideDurationRising, 3);
         }
         else if (currentTide == TideState.Rising)
         {
@@ -77,7 +77,6 @@ public class TidesManager : Singleton<TidesManager>
             UpdateWaterNavBlocker(setWaveShaderVariables.waveHeight);
 
             tideChangeInterval = tideDurationHigh;
-
         }
         else if (currentTide == TideState.High)
         {
@@ -90,7 +89,7 @@ public class TidesManager : Singleton<TidesManager>
             SurvivorsController.Instance.AddAgeToAll(1);
 
             tideChangeInterval = tideDurationLowering;
-
+            CameraShake.Instance.ShakeCamera(tideDurationLowering, 1);
         }
         else if (currentTide == TideState.Lowering)
         {

@@ -1,7 +1,7 @@
 using NaughtyAttributes;
 using UnityEngine;
 
-public class CameraShake : MonoBehaviour
+public class CameraShake : Singleton<CameraShake>
 {
     // Transform of the camera to shake. Grabs the gameObject's transform
     // if null.
@@ -19,8 +19,9 @@ public class CameraShake : MonoBehaviour
     Vector3 originalPos;
     float originalShakeDuration; //<--add this
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         if (camTransform == null)
         {
             camTransform = GetComponent(typeof(Transform)) as Transform;
