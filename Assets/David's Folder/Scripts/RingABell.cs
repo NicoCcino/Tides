@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class RingABell : MonoBehaviour
 {
+    [SerializeField] private AudioSource audioSource;
     public void RingBell()
     {
         SurvivorController[] survivorsControllers = SurvivorsController.Instance.Survivors.ToArray();
@@ -11,5 +12,6 @@ public class RingABell : MonoBehaviour
             if (survivorsControllers[i] == null) continue;
             survivorsControllers[i].survivorStateManager.ChangeState(ESurvivorState.GoingToBase);
         }
+        audioSource.Play();
     }
 }
