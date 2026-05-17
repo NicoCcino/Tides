@@ -2126,6 +2126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07c21a17a9689de499885b9bb707566d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CampController
+  buildableBehaviour: {fileID: 4283425208501534217}
 --- !u!1 &8244956541670908728
 GameObject:
   m_ObjectHideFlags: 0

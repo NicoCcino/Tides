@@ -1870,6 +1870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b9e34375d5b3784297d087ecf58ec33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JobableBehaviour
+  ControlsUIDisplayal: 1
   JobableControlsGameObject: {fileID: 1955675103855945282}
 --- !u!4 &4881637204724941143 stripped
 Transform:
@@ -1899,7 +1900,7 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: -0.0008695651
-      value: 0.40034366
+      value: 0.99634635
       inSlope: 0.92210704
       outSlope: 0.92210704
       tangentMode: 0
@@ -1908,7 +1909,7 @@ MonoBehaviour:
       outWeight: 0.039130434
     - serializedVersion: 3
       time: 0.9991303
-      value: 0.9982818
+      value: 1.5942845
       inSlope: 0
       outSlope: 0
       tangentMode: 136

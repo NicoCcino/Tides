@@ -34,6 +34,8 @@ public class CampsController : Singleton<CampsController>
 
         foreach (CampController camp in Camps)
         {
+            if (!camp.IsAvailable) continue;
+
             float distance = Vector3.Distance(survivorPosition, camp.transform.position);
             if (distance < closestDistance)
             {

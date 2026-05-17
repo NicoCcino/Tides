@@ -14,7 +14,7 @@ public class GamesRulesManager : Singleton<GamesRulesManager>
             Debug.Log("GAME OVER. No more survivors are not enough to create a new one");
             GameStateManager.Instance.ChangeState(EGameState.GameOver);
         }
-        if (CampsController.Instance.Camps.Count <= 0)
+        if (CampsController.Instance.Camps.Count(c => c.IsAvailable) <= 0)
         {
             LatestLooseReason = "All your camps have been destroyed, your survivors won't survive the incoming tides.";
             Debug.Log("GAME OVER. No more camps and stocks.");

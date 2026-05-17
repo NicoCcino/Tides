@@ -25,6 +25,8 @@ namespace Tides.Resources
         private void OnEnable()
         {
             Initialize(ResourceType, 5);
+            float scale = scaleCurve.Evaluate(1);
+            transform.localScale = new Vector3(scale, scale, scale);
         }
         public void Initialize(ResourceType resourceType, int amount)
         {
@@ -49,7 +51,7 @@ namespace Tides.Resources
         private void OnResourceAmountChanged(int newAmount)
         {
             float scale = scaleCurve.Evaluate(newAmount / baseAmount);
-            transform.localScale = new Vector3(scale, scale, scale);
+            affectedTransform.localScale = new Vector3(scale, scale, scale);
             if (newAmount <= 0)
             {
                 CancelJobs();
