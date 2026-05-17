@@ -8013,7 +8013,7 @@ MonoBehaviour:
   dontDestroyOnLoad: 0
   defaultFood: 25
   defaultWood: 25
-  FoodConsumptionPerSurvivor: 5
+  FoodConsumptionPerSurvivor: 1
 --- !u!1001 &1202475366
 PrefabInstance:
   m_ObjectHideFlags: 0
