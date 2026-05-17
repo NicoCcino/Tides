@@ -69,7 +69,7 @@ public partial class BuildableBehaviour : MonoBehaviour, IPointerDownHandler
         informationsGameObject.SetActive(true);
         BuildingProgress = 0;
         UpdateProgress(0.0f);
-        if(AudioSource != null && DestroyClip != null)
+        if (AudioSource != null && DestroyClip != null)
         {
             AudioSource.clip = DestroyClip;
             AudioSource.Play();
@@ -103,7 +103,8 @@ public partial class BuildableBehaviour : MonoBehaviour, IPointerDownHandler
     }
     private void FixedUpdate()
     {
-        if (TidesManager.Instance.currentTide == TidesManager.TideState.Rising)
+        if (BuildingProgress <= 0.0f && !assignedBuilding) return;
+        if (TidesManager.Instance.currentTide == TidesManager.TideState.Low)
         {
             Transform waveTransform = TidesManager.Instance.waveTransform;
             if (!PlaneProjectionHelper.IsPointInFrontOfPlane(waveTransform.position, waveTransform.forward, transform.position) && transform.position.y < TidesManager.Instance.tideCyclesSO.tideCycles[TidesManager.Instance.currentCycleIndex].WaveHeight)
