@@ -59,7 +59,7 @@ Material:
     - _QueueOffset: 0
     - _RestHeight: -3
     - _Smoothness: 0.9
-    - _TextureLOD: 5.44
+    - _TextureLOD: 4.78
     - _Thickness: -0.2
     - _WaterColorDepthDistance: 2
     - _WaveHeight: 0
