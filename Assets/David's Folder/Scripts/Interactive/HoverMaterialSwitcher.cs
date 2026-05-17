@@ -57,4 +57,8 @@ public class HoverMaterialAdder : MonoBehaviour, IPointerEnterHandler, IPointerE
         Destroy(instantiatedTempMaterial);
         instantiatedTempMaterial = null;
     }
+    private void OnDisable()
+    {
+        RemoveTemporaryMaterial();
+    }
 }

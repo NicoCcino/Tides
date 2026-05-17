@@ -51,6 +51,7 @@ public class GatherPointSpawner : MonoBehaviour
     private void OnEnable()
     {
         GatherPoints = new GatherPointBehaviour[GatherPointAmount];
+        InitializeGatherPoints();
     }
 
     public void SpawnPoint(Vector3 position, ResourceType resourceType)
@@ -102,7 +103,7 @@ public class GatherPointSpawner : MonoBehaviour
 
             // R < 0.5f (Height)
             // G > 0 (Valid area)
-            if (pixel.r < 0.5f && pixel.g > 0.5f)
+            if (pixel.r < 0.5f && pixel.g > 0.01f)
             {
                 float x = worldCenter.x + ((float)u / texWidth - 0.5f) * worldSize.x;
                 float z = worldCenter.z + ((float)v / texHeight - 0.5f) * worldSize.z;
@@ -113,6 +114,14 @@ public class GatherPointSpawner : MonoBehaviour
 
                 // Final world Y (allowing negative values as per requested mapping)
                 float y = worldCenter.y + yOffset;
+
+                // Reject points below the current cycle's RestHeight
+                float restHeight = TidesManager.Instance.tideCyclesSO.tideCycles[TidesManager.Instance.currentCycleIndex].RestHeight;
+                if (y < restHeight + 1)
+                {
+                    continue;
+                }
+
                 spawnPoints[count] = new Vector3(x, y, z);
                 count++;
             }
@@ -157,8 +166,6 @@ public class GatherPointSpawner : MonoBehaviour
 
             if (Time.time < lastSpawnTime + spawnCooldown) return;
 
-            // When tide is lowering, we want to spawn points that the wave has passed.
-            // These points are now BEHIND the wave plane (IsPointInFrontOfPlane == false).
             Vector3 spawnPos = CurrentSpawningCoordinates.FirstOrDefault(s => PlaneProjectionHelper.IsPointInFrontOfPlane(waveTransform.position, waveTransform.forward, s));
 
             if (spawnPos != default)
@@ -174,6 +181,39 @@ public class GatherPointSpawner : MonoBehaviour
                 CurrentSpawningCoordinates = null;
         }
     }
+    [Button("Initialize Gather Points")]
+    public void InitializeGatherPoints()
+    {
+        // Generate new coordinates if none exist
+        CurrentSpawningCoordinates = GetRandomSpawnPositions().ToList();
+        spawningIndex = 0;
+
+        // Reset tracking array to avoid duplicates
+        for (int i = 0; i < GatherPoints.Length; i++)
+        {
+            if (GatherPoints[i] != null)
+            {
+                if (GatherPoints[i].ResourceType == ResourceType.FOOD)
+                    foodPool.Release(GatherPoints[i].gameObject);
+                else
+                    woodPool.Release(GatherPoints[i].gameObject);
+
+                GatherPoints[i] = null;
+            }
+        }
+
+        // Spawn all points that are currently "behind" the wave (revealed)
+        List<Vector3> toSpawn = CurrentSpawningCoordinates
+            .Where(s => PlaneProjectionHelper.IsPointInFrontOfPlane(waveTransform.position, waveTransform.forward, s))
+            .ToList();
+
+        foreach (Vector3 pos in toSpawn)
+        {
+            SpawnPoint(pos, (ResourceType)Random.Range(1, 3));
+            CurrentSpawningCoordinates.Remove(pos);
+        }
+    }
+
     [Button("Spawn Debug")]
     private void DebugSpawnPoints()
     {
