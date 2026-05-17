@@ -22,6 +22,9 @@ public partial class BuildableBehaviour : MonoBehaviour, IPointerDownHandler
     [SerializeField, Range(0, 1)] public float BuildingProgress = 0.0f;
 
     private bool assignedBuilding = false;
+    public AudioSource AudioSource;
+    public AudioClip BuildEndClip;
+    public AudioClip DestroyClip;
 
     public void TickUpdateProgress()
     {
@@ -46,6 +49,11 @@ public partial class BuildableBehaviour : MonoBehaviour, IPointerDownHandler
         buildableGameObject.SetActive(false);
         buildingControlGameObject.SetActive(false);
         assignedBuilding = false;
+        if (AudioSource != null && BuildEndClip != null)
+        {
+            AudioSource.clip = BuildEndClip;
+            AudioSource.Play();
+        }
     }
     public void DestroyBuilding()
     {
@@ -61,7 +69,11 @@ public partial class BuildableBehaviour : MonoBehaviour, IPointerDownHandler
         informationsGameObject.SetActive(true);
         BuildingProgress = 0;
         UpdateProgress(0.0f);
-
+        if(AudioSource != null && DestroyClip != null)
+        {
+            AudioSource.clip = DestroyClip;
+            AudioSource.Play();
+        }
     }
     public void CancelBuilding()
     {
