@@ -628,7 +628,7 @@ MonoBehaviour:
     sceneSet: {fileID: 11400000, guid: 7a7196cae292d1c478d0170d19b17dfa, type: 2}
     victoryClip: {fileID: 0}
     audioSource: {fileID: 1262363178}
-  startState: 4
+  startState: 2
 --- !u!4 &1262363177
 Transform:
   m_ObjectHideFlags: 0
