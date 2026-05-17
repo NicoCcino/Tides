@@ -24,9 +24,14 @@ public class LookAtMainCamera : MonoBehaviour
     [field: SerializeField] public bool LockY { get; private set; }
     [field: SerializeField] public bool LockZ { get; private set; }
 
-    private Quaternion targetRotation;
+    private Vector3 lockedWorldEuler;
 
-    private void Update()
+    private void Start()
+    {
+        lockedWorldEuler = transform.eulerAngles;
+    }
+
+    private void LateUpdate()
     {
         Transform target = GetLookTarget();
         if (target == null) return;
@@ -43,28 +48,32 @@ public class LookAtMainCamera : MonoBehaviour
         Quaternion lookRotation = Quaternion.LookRotation(direction, upDirection);
         
         Vector3 euler = lookRotation.eulerAngles;
-        Vector3 currentEuler = useLocalLookAt ? transform.localEulerAngles : transform.eulerAngles;
 
-        if (LockX) euler.x = currentEuler.x;
-        if (LockY) euler.y = currentEuler.y;
-        if (LockZ) euler.z = currentEuler.z;
+        if (LockX) euler.x = lockedWorldEuler.x;
+        if (LockY) euler.y = lockedWorldEuler.y;
+        if (LockZ) euler.z = lockedWorldEuler.z;
 
-        targetRotation = Quaternion.Euler(euler);
+        Quaternion targetWorldRotation = Quaternion.Euler(euler);
+
+        if (smoothTime > 0)
+        {
+            targetWorldRotation = Quaternion.Lerp(transform.rotation, targetWorldRotation, Time.deltaTime / smoothTime);
+        }
 
         if (useLocalLookAt)
         {
-            transform.localRotation = targetRotation;
-        }
-        else
-        {
-            if (smoothTime > 0)
+            if (transform.parent != null)
             {
-                transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime / smoothTime);
+                transform.localRotation = Quaternion.Inverse(transform.parent.rotation) * targetWorldRotation;
             }
             else
             {
-                transform.rotation = targetRotation;
+                transform.localRotation = targetWorldRotation;
             }
+        }
+        else
+        {
+            transform.rotation = targetWorldRotation;
         }
     }
 
