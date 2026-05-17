@@ -5,7 +5,7 @@ using Tides.Resources;
 public class GoingToBaseState : ASurvivorState
 {
     public Vector3 basePosition = Vector3.zero;
-    float baseDistanceThreshold = 0.5f;
+    float baseDistanceThreshold = 2f;
     bool isStoring = false;
     float storeTimer = 0f;
     float storeDuration = 4.5f;
