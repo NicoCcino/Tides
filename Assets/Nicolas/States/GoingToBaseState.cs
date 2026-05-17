@@ -60,10 +60,8 @@ public class GoingToBaseState : ASurvivorState
             {
                 Debug.Log("Survivor reached based with resources");
 
-
                 // Base collects all inventory.
                 StartStoreResources();
-
             }
         }
     }
@@ -81,7 +79,7 @@ public class GoingToBaseState : ASurvivorState
     {
 
         // Transfer resource from survivor inventory to global resource manager
-        if (survivorController.resourceInInventory == null) return;
+        if (survivorController.resourceInInventory == null) { survivorStateManager.ChangeState(ESurvivorState.Idling); return; }
         if (survivorController.resourceInInventory is WoodResource)
         {
             Tides.Resources.ResourcesManager.Instance.AddWood(
@@ -107,6 +105,5 @@ public class GoingToBaseState : ASurvivorState
         }
         // Back to idle
         survivorStateManager.ChangeState(ESurvivorState.Idling);
-
     }
 }

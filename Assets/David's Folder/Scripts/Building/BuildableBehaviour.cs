@@ -88,7 +88,7 @@ public partial class BuildableBehaviour : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (assignedBuilding == true)
+        if (assignedBuilding == true || BuildingProgress >= 1.0f)
         {
             return;
         }
@@ -104,10 +104,10 @@ public partial class BuildableBehaviour : MonoBehaviour, IPointerDownHandler
     private void FixedUpdate()
     {
         if (BuildingProgress <= 0.0f && !assignedBuilding) return;
-        if (TidesManager.Instance.currentTide == TidesManager.TideState.Low)
+        if (TidesManager.Instance.currentTide == TidesManager.TideState.Rising)
         {
             Transform waveTransform = TidesManager.Instance.waveTransform;
-            if (!PlaneProjectionHelper.IsPointInFrontOfPlane(waveTransform.position, waveTransform.forward, transform.position) && transform.position.y < TidesManager.Instance.tideCyclesSO.tideCycles[TidesManager.Instance.currentCycleIndex].WaveHeight)
+            if (!PlaneProjectionHelper.IsPointInFrontOfPlane(waveTransform.position, waveTransform.forward, transform.position) && transform.position.y <= TidesManager.Instance.tideCyclesSO.tideCycles[TidesManager.Instance.currentCycleIndex].WaveHeight)
             {
                 Debug.Log("DESTROY BUILDING");
                 DestroyBuilding();
