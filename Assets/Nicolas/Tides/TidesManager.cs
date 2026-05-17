@@ -1,9 +1,4 @@
 using UnityEngine;
-using Tides.Resources;
-using System.Collections.Generic;
-using UnityEngine.Playables;
-
-
 
 public class TidesManager : Singleton<TidesManager>
 {
