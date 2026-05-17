@@ -18,7 +18,7 @@ public class ButtonBuySurvivor : MonoBehaviour
     public void TryBuySurvivor()
     {
 
-        if (ResourcesManager.Instance.TryConsumeFood(25))
+        if (ResourcesManager.Instance.TryConsumeFood(10))
         {
             SpawnSurvivor();
         }
