@@ -19,6 +19,7 @@ namespace Tides.Resources
         private void OnDisable()
         {
             Resource.OnAmountChanged -= OnResourceAmountChanged;
+            CancelJobs();
         }
         public void Initialize(ResourceType resourceType, int amount)
         {
