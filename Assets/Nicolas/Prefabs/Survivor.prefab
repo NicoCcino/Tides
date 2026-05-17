@@ -520,7 +520,7 @@ MonoBehaviour:
   AudioSource: {fileID: 8653657546541661516}
   GatherClip: {fileID: 8300000, guid: 5f9fac1b1859e7c43807009a7ca21c88, type: 3}
   BuildClip: {fileID: 8300000, guid: a4c829112214374429c1e9aa2f375d55, type: 3}
-  DieClip: {fileID: 8300000, guid: a481c6bebd354b3468b38201a86db446, type: 3}
+  DieClip: {fileID: 8300000, guid: 792e5a497a844ff41baf01da17573616, type: 3}
 --- !u!114 &2347342831895062734
 MonoBehaviour:
   m_ObjectHideFlags: 0
