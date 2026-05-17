@@ -16,10 +16,6 @@ namespace Tides.Resources
         /// <summary>
         /// Only for debug purpose
         /// </summary>
-        private void OnEnable()
-        {
-            Initialize(ResourceType, 5);
-        }
         private void OnDisable()
         {
             Resource.OnAmountChanged -= OnResourceAmountChanged;
@@ -85,8 +81,8 @@ namespace Tides.Resources
     [System.Serializable]
     public enum ResourceType
     {
-        NONE,
-        FOOD,
-        WOOD
+        NONE = 0,
+        FOOD = 1,
+        WOOD = 2
     }
 }
