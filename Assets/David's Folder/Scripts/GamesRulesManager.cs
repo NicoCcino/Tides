@@ -7,7 +7,7 @@ public class GamesRulesManager : Singleton<GamesRulesManager>
     [SerializeField] private BuildableBehaviour boatBuildable;
     private void FixedUpdate()
     {
-        if (SurvivorsController.Instance.Survivors.Count == 0 && ResourcesManager.Instance.FoodResource.GetAmount() < 5)
+        if (SurvivorsController.Instance.Survivors.Count == 0 && ResourcesManager.Instance.FoodResource.GetAmount() < 25)
         {
             Debug.Log("GAME OVER. No more survivors are not enough to create a new one");
             GameStateManager.Instance.ChangeState(EGameState.GameOver);

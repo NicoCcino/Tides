@@ -123,7 +123,8 @@ public class SurvivorController : MonoBehaviour
 
     public void Die()
     {
-        currentJob.JobProvider.RemoveJob();
+        if (currentJob != null)
+            currentJob.JobProvider.RemoveJob();
         survivorStateManager.ChangeState(ESurvivorState.Dying);
     }
     public void DestroyThis(float seconds)

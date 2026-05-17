@@ -15,8 +15,8 @@ MonoBehaviour:
   m_Scenes:
   - sceneAsset: {fileID: 102900000, guid: cf2e4084f6d8d2241b4127564718f1c5, type: 3}
     scenePath: Assets/David's Folder/Scenes/GameManager.unity
-  - sceneAsset: {fileID: 102900000, guid: c0eed2eb023845d42b97bf38d2ad052c, type: 3}
-    scenePath: Assets/David's Folder/Scene_David.unity
+  - sceneAsset: {fileID: 102900000, guid: 9780220d104ebaf43a6b88e243a38ed4, type: 3}
+    scenePath: Assets/Scenes/MainScene.unity
   m_ActiveScene:
     sceneAsset: {fileID: 102900000, guid: cf2e4084f6d8d2241b4127564718f1c5, type: 3}
     scenePath: Assets/David's Folder/Scenes/GameManager.unity

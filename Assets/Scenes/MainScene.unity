@@ -7114,11 +7114,44 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5988190903945041081, guid: 4b7b1a0d22c63d146be55ee9c8472c49, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4377452618454357713, guid: 4b7b1a0d22c63d146be55ee9c8472c49, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1423756839}
   m_SourcePrefab: {fileID: 100100000, guid: 4b7b1a0d22c63d146be55ee9c8472c49, type: 3}
+--- !u!114 &1423756837 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8757265066616241804, guid: 4b7b1a0d22c63d146be55ee9c8472c49, type: 3}
+  m_PrefabInstance: {fileID: 1423756836}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!1 &1423756838 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4377452618454357713, guid: 4b7b1a0d22c63d146be55ee9c8472c49, type: 3}
+  m_PrefabInstance: {fileID: 1423756836}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1423756839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423756838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3cea63be021d3646a152e382211e185, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UISurvivorCount
+  textSurvivorAmount: {fileID: 1423756837}
 --- !u!1001 &1424136018
 PrefabInstance:
   m_ObjectHideFlags: 0
