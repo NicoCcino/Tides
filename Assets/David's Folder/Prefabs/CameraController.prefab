@@ -164,6 +164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9160298826310456032}
   - component: {fileID: 723894932905075038}
+  - component: {fileID: 2395199062412392521}
   m_Layer: 0
   m_Name: CameraController
   m_TagString: Untagged
@@ -200,3 +201,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tides.Camera.CameraController
   <SettingsAsset>k__BackingField: {fileID: 11400000, guid: 4164b062dc765dc479ad044f958185f9, type: 2}
+--- !u!114 &2395199062412392521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3944814132007166550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd91145c5bd5b7542b4584c984533c92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraShake
+  camTransform: {fileID: 8716294927703398303}
+  shakeDuration: 1
+  shakeAmount: 0.7
+  decreaseFactor: 1
+  shaketrue: 0
