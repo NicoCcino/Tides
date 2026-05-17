@@ -6031,37 +6031,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1263062919197179883, guid: 8d72f389648677e4ebbee599685fc44e, type: 3}
   m_PrefabInstance: {fileID: 1006780137}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1042710444
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1042710445}
-  m_Layer: 0
-  m_Name: Debug target
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1042710445
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1042710444}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -21.02, y: 0, z: -22.099998}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2029051378}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1043264583
 GameObject:
   m_ObjectHideFlags: 0
@@ -8199,7 +8168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::David.Utils.PlaneProjectionVisualizer
   <MovementDirection>k__BackingField: {x: 0, y: 0, z: 1}
-  <TargetToTest>k__BackingField: {fileID: 1042710445}
+  <TargetToTest>k__BackingField: {fileID: 0}
   <GizmoSize>k__BackingField: 11.2
 --- !u!1 &1478971200
 GameObject:
@@ -11058,12 +11027,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   dontDestroyOnLoad: 1
-  tideChangeInterval: 5
+  tideChangeInterval: 60
+  tideTimer: 0
   currentTide: 3
   currentCycleIndex: 0
+  waterNavBlocker: {fileID: 0}
   waveAnimator: {fileID: 1445005897}
   setWaveShaderVariables: {fileID: 1445005898}
   tideCyclesSO: {fileID: 11400000, guid: fec9b7d9adc474d4ca5987d9ac9a6903, type: 2}
+  waveTransform: {fileID: 1445005896}
 --- !u!1 &1841222649
 GameObject:
   m_ObjectHideFlags: 0
@@ -11707,7 +11679,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1042710445}
   - {fileID: 1445005896}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12466,6 +12437,14 @@ PrefabInstance:
     - target: {fileID: 1091746275252353111, guid: de80a17bc2cd63f479f814a3b33b004e, type: 3}
       propertyPath: m_Name
       value: Ship_Buildable
+      objectReference: {fileID: 0}
+    - target: {fileID: 1401911096637383972, guid: de80a17bc2cd63f479f814a3b33b004e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1783916971573324634, guid: de80a17bc2cd63f479f814a3b33b004e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2326605327321595453, guid: de80a17bc2cd63f479f814a3b33b004e, type: 3}
       propertyPath: m_AnchorMax.y

@@ -17,6 +17,7 @@ public class TidesManager : Singleton<TidesManager>
     public SetWaveShaderVariables setWaveShaderVariables;
 
     public TideCyclesSO tideCyclesSO;
+    public Transform waveTransform;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using David.Utils;
 using Tides.Resources;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -43,15 +44,23 @@ public partial class BuildableBehaviour : MonoBehaviour, IPointerDownHandler
         buildedGameObject.SetActive(true);
         buildableGameObject.SetActive(false);
         buildingControlGameObject.SetActive(false);
+        assignedBuilding = false;
     }
     public void DestroyBuilding()
     {
+        if (BuildingProgress < 1.0f && assignedBuilding)
+        {
+            ResourcesManager.Instance.AddWood(buildingCost);
+        }
+        CancelJobs();
         buildedGameObject.SetActive(false);
         buildableGameObject.SetActive(true);
-        buildingControlGameObject.SetActive(true);
+        buildingControlGameObject.SetActive(false);
         assignedBuilding = false;
         informationsGameObject.SetActive(true);
         BuildingProgress = 0;
+        UpdateProgress(0.0f);
+
     }
     public void CancelBuilding()
     {
@@ -66,7 +75,6 @@ public partial class BuildableBehaviour : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-
         if (assignedBuilding == true)
         {
             return;
@@ -78,6 +86,18 @@ public partial class BuildableBehaviour : MonoBehaviour, IPointerDownHandler
             buildingControlGameObject.SetActive(true);
             UpdateProgress(0.0f);
             UIPopupTextManager.Instance.SpawnPopup(worldUiTransform, "-" + buildingCost.ToString(), Color.red, false);
+        }
+    }
+    private void FixedUpdate()
+    {
+        if (TidesManager.Instance.currentTide == TidesManager.TideState.Rising)
+        {
+            Transform waveTransform = TidesManager.Instance.waveTransform;
+            if (!PlaneProjectionHelper.IsPointInFrontOfPlane(waveTransform.position, waveTransform.forward, transform.position) && transform.position.y < TidesManager.Instance.tideCyclesSO.tideCycles[TidesManager.Instance.currentCycleIndex].WaveHeight)
+            {
+                Debug.Log("DESTROY BUILDING");
+                DestroyBuilding();
+            }
         }
     }
 
