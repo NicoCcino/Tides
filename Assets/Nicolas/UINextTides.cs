@@ -6,6 +6,7 @@ public class UINextTides : MonoBehaviour
 
     public TidesManager tidesManager;
     public TMPro.TextMeshProUGUI[] tidesNumberTexts;
+    public TMPro.TextMeshProUGUI[] tidesRemainingTimeTexts;
     public TMPro.TextMeshProUGUI[] tidesHeightTexts;
 
     [SerializeField]
@@ -35,7 +36,11 @@ public class UINextTides : MonoBehaviour
         {
             int tideIndex = (int)(currentTideIndex + i);
 
-            tidesNumberTexts[i].text = $"Tide {tideIndex}";
+            tidesNumberTexts[i].text = $"Tide {tidesManager.GetHighTidesSurvived() + i + 1}";
+
+            float timeRemainingBeforeHighTide = tidesManager.GetTimeRemainingBeforeHighTide() + (tidesManager.cycleDuration * i);
+            tidesRemainingTimeTexts[i].text = $"in {Mathf.Max(0, timeRemainingBeforeHighTide):F0} seconds";
+
             tidesHeightTexts[i].text = $"Height: {tidesManager.tideCyclesSO.tideCycles[tideIndex].tideCoefficient}";
 
             Color newColor = Color.Lerp(lightBlue, darkBlue, tidesManager.tideCyclesSO.tideCycles[tideIndex].tideCoefficient / 4f);

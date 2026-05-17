@@ -12,6 +12,8 @@ public class TidesManager : Singleton<TidesManager>
 
     public float tideDurationRising = 20f;
 
+    public float cycleDuration; // Total duration of a tide cycle (rising + high + lowering + low)
+
     public float tideTimer = 0f;
     public enum TideState { Rising, High, Lowering, Low }
     public TideState currentTide = TideState.Low;
@@ -30,9 +32,12 @@ public class TidesManager : Singleton<TidesManager>
     public Transform waveRandomOrient;
 
 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        cycleDuration = tideDurationLow + tideDurationRising + tideDurationHigh + tideDurationLowering;
+
         // Starting at TideState.Low.
         tideChangeInterval = tideDurationLow;
 
@@ -108,6 +113,8 @@ public class TidesManager : Singleton<TidesManager>
         {
             currentTide = TideState.Low;
             // Additional logic for low tide
+
+            // cycle index is increased when the tide is low.
             currentCycleIndex++;
 
             tideChangeInterval = tideDurationLow;
@@ -128,5 +135,60 @@ public class TidesManager : Singleton<TidesManager>
             // waterNavBlocker.SetActive(true);
 
         }
+    }
+
+    private float GetTimeRemainingInCurrentTide()
+    {
+        float timeRemaining = tideChangeInterval - tideTimer;
+        //Debug.Log("Time remaining in current tide: " + timeRemaining + " seconds");
+        return timeRemaining;
+    }
+
+    public float GetTimeRemainingBeforeHighTide()
+    {
+        float timeRemaining = 0f;
+
+        switch (currentTide)
+        {
+            case TideState.Rising:
+                timeRemaining = tideDurationRising - tideTimer;
+                break;
+            case TideState.High:
+                timeRemaining = tideDurationHigh + tideDurationLowering + tideDurationLow + tideDurationRising - tideTimer;
+                break;
+            case TideState.Lowering:
+                timeRemaining = tideDurationLowering + tideDurationLow + tideDurationRising - tideTimer;
+                break;
+            case TideState.Low:
+                timeRemaining = tideDurationLow + tideDurationRising - tideTimer;
+                break;
+        }
+
+        //Debug.Log("Time remaining before high tide: " + timeRemaining + " seconds");
+        return timeRemaining;
+    }
+
+    public int GetHighTidesSurvived()
+    {
+        int highTideCycleIndex = currentCycleIndex;
+
+        if (currentTide == TideState.Rising)
+        {
+            highTideCycleIndex = currentCycleIndex;
+        }
+        else if (currentTide == TideState.High)
+        {
+            highTideCycleIndex = currentCycleIndex + 1;
+        }
+        else if (currentTide == TideState.Lowering)
+        {
+            highTideCycleIndex = (currentCycleIndex + 1);
+        }
+        else if (currentTide == TideState.Low)
+        {
+            highTideCycleIndex = currentCycleIndex;
+        }
+
+        return highTideCycleIndex;
     }
 }
