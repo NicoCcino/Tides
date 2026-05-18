@@ -4,8 +4,6 @@ using UnityEngine.UI;
 
 public class UITutorialPanel : MonoBehaviour
 {
-
-    public IntroCutscene introCutscene;
     public Toggle toggle;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,7 +19,7 @@ public class UITutorialPanel : MonoBehaviour
 
     public void ClosePanel()
     {
-        introCutscene.TryPlay();
+        IntroCutscene.Instance.TryPlay();
         toggle.isOn = false;
         gameObject.SetActive(false);
     }

@@ -5,10 +5,12 @@ using UnityEngine.Playables;
 public class IntroCutscene : Singleton<IntroCutscene>
 {
     private PlayableDirector playableDirector;
-    public bool hasBeenPlayed = false;
+    public bool hasBeenPlayed;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         playableDirector = GetComponent<PlayableDirector>();
     }
 
