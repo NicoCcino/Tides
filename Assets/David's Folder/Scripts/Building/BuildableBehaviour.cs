@@ -79,6 +79,7 @@ public partial class BuildableBehaviour : MonoBehaviour, IPointerDownHandler
     }
     public void CancelBuilding()
     {
+        if (assignedBuilding == false) return;
         assignedBuilding = false;
         informationsGameObject.SetActive(true);
         buildingControlGameObject.SetActive(false);
