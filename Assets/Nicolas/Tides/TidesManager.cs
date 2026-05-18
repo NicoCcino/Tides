@@ -1,5 +1,7 @@
 using Tides.Resources;
+using Unity.AI.Navigation;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class TidesManager : Singleton<TidesManager>
 {
@@ -21,6 +23,7 @@ public class TidesManager : Singleton<TidesManager>
     public int currentCycleIndex = 0;
 
     public GameObject waterNavBlocker;
+    public NavMeshSurface navMeshSurface;
 
     [SerializeField] private Animator waveAnimator;
 

@@ -1,8 +1,10 @@
 using UnityEngine;
 using Tides.Resources;
+using Unity.VisualScripting;
 
 public class ButtonBuySurvivor : MonoBehaviour
 {
+    [SerializeField] private Transform spawnPoint;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -32,8 +34,8 @@ public class ButtonBuySurvivor : MonoBehaviour
     {
         // Assuming you have a prefab for the survivor and a spawn point in your scene
         GameObject survivorPrefab = SurvivorsController.Instance.survivorPrefab; // Reference to survivor prefab
-
-        Vector3 spawnPosition = this.transform.position + new Vector3(0, 0, -1); // Spawn next to the button
+        Vector2 random = Random.insideUnitCircle * 0.3f;
+        Vector3 spawnPosition = spawnPoint.position + new Vector3(random.x, 0, random.y); // Spawn next to the button
 
         SurvivorsController.Instance.SpawnSurvivor(survivorPrefab, spawnPosition);
     }

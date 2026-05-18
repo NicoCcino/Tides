@@ -287,6 +287,22 @@ PrefabInstance:
       propertyPath: ResourceType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5747312858424288323, guid: 506d1a1a522328b48883573d291a1925, type: 3}
+      propertyPath: scaleCurve.m_Curve.Array.data[0].time
+      value: 0.0038222894
+      objectReference: {fileID: 0}
+    - target: {fileID: 5747312858424288323, guid: 506d1a1a522328b48883573d291a1925, type: 3}
+      propertyPath: scaleCurve.m_Curve.Array.data[1].time
+      value: 1.0027989
+      objectReference: {fileID: 0}
+    - target: {fileID: 5747312858424288323, guid: 506d1a1a522328b48883573d291a1925, type: 3}
+      propertyPath: scaleCurve.m_Curve.Array.data[0].value
+      value: 1.4043999
+      objectReference: {fileID: 0}
+    - target: {fileID: 5747312858424288323, guid: 506d1a1a522328b48883573d291a1925, type: 3}
+      propertyPath: scaleCurve.m_Curve.Array.data[1].value
+      value: 2.4021533
+      objectReference: {fileID: 0}
     - target: {fileID: 5826140016107469056, guid: 506d1a1a522328b48883573d291a1925, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

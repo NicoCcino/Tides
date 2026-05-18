@@ -16,7 +16,7 @@ public class GoingToBaseState : ASurvivorState
     public override void Enter()
     {
         Debug.Log("Survivor entered GoingToBaseState state");
-        basePosition = CampsController.Instance.GetClosestCamp(survivorController).transform.position;
+        basePosition = CampsController.Instance.GetClosestCamp(survivorController).targetPoint.position;
 
         survivorController.GoTo(basePosition);
 

@@ -15,6 +15,7 @@ public class JobableBehaviour : MonoBehaviour, IPointerDownHandler
     }
     private void OnDisable()
     {
+        if (!ControlsUIDisplayal) return;
         JobableControlsGameObject.SetActive(false);
     }
     private void Awake()

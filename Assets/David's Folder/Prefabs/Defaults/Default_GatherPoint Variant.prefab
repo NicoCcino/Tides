@@ -1796,6 +1796,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Default_GatherPoint Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 6589190192028238088, guid: 3322ebd7e695fd14ea98fe9c89c8ea7a, type: 3}
+      propertyPath: m_Radius
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 7898617485715423819, guid: 3322ebd7e695fd14ea98fe9c89c8ea7a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.75

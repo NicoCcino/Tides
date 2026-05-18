@@ -28,8 +28,6 @@ namespace Tides.Resources
         {
             Show();
             Initialize(ResourceType, 5);
-            float scale = scaleCurve.Evaluate(1);
-            transform.localScale = new Vector3(scale, scale, scale);
         }
         public void Initialize(ResourceType resourceType, int amount)
         {
@@ -49,11 +47,13 @@ namespace Tides.Resources
             }
             baseAmount = amount;
             Resource.OnAmountChanged += OnResourceAmountChanged;
+            float scale = scaleCurve.Evaluate(1);
+            affectedTransform.localScale = new Vector3(scale, scale, scale);
         }
 
         private void OnResourceAmountChanged(int newAmount)
         {
-            float scale = scaleCurve.Evaluate(newAmount / baseAmount);
+            float scale = scaleCurve.Evaluate((float)newAmount / baseAmount);
             affectedTransform.localScale = new Vector3(scale, scale, scale);
             if (newAmount <= 0)
             {

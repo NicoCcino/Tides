@@ -49,6 +49,7 @@ public partial class BuildableBehaviour : MonoBehaviour, IPointerDownHandler
         buildableGameObject.SetActive(false);
         buildingControlGameObject.SetActive(false);
         assignedBuilding = false;
+        GetComponent<Collider>().enabled = false;
         if (AudioSource != null && BuildEndClip != null)
         {
             AudioSource.clip = BuildEndClip;
@@ -74,6 +75,7 @@ public partial class BuildableBehaviour : MonoBehaviour, IPointerDownHandler
             AudioSource.clip = DestroyClip;
             AudioSource.Play();
         }
+        GetComponent<Collider>().enabled = true;
     }
     public void CancelBuilding()
     {
@@ -82,8 +84,9 @@ public partial class BuildableBehaviour : MonoBehaviour, IPointerDownHandler
         buildingControlGameObject.SetActive(false);
         ResourcesManager.Instance.AddWood(buildingCost);
         UIPopupTextManager.Instance.SpawnPopup(worldUiTransform, "+" + buildingCost.ToString(), Color.green, true);
-        CancelJobs();
+        //CancelJobs();
         UpdateProgress(0f);
+        GetComponent<Collider>().enabled = true;
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -99,6 +102,7 @@ public partial class BuildableBehaviour : MonoBehaviour, IPointerDownHandler
             buildingControlGameObject.SetActive(true);
             UpdateProgress(0.0f);
             UIPopupTextManager.Instance.SpawnPopup(worldUiTransform, "-" + buildingCost.ToString(), Color.red, false);
+            GetComponent<Collider>().enabled = false;
         }
     }
     private void FixedUpdate()
@@ -130,7 +134,8 @@ public partial class BuildableBehaviour : IJobProvider
 
     public void CancelJobs()
     {
-        List<SurvivorController> survivorControllers = SurvivorsController.Instance.Survivors.Where(s => s.currentJob != null && s.currentJob.GetType() == typeof(BuildJob) && s.currentJob.JobProvider == this).ToList();
+        CancelBuilding();
+        List<SurvivorController> survivorControllers = SurvivorsController.Instance.Survivors.Where(s => s.currentJob != null && s.currentJob.GetType() == typeof(BuildJob) && (Object)s.currentJob.JobProvider == this).ToList();
         foreach (SurvivorController survivor in survivorControllers)
         {
             survivor.StopCurrentJob();
@@ -140,7 +145,8 @@ public partial class BuildableBehaviour : IJobProvider
 
     public void RemoveJob()
     {
-        SurvivorController survivorController = SurvivorsController.Instance.Survivors.FirstOrDefault(s => s.currentJob != null && s.currentJob.GetType() == typeof(BuildJob) && s.currentJob.JobProvider == this);
+        SurvivorController survivorController = SurvivorsController.Instance.Survivors.FirstOrDefault(s => s.currentJob != null && s.currentJob.GetType() == typeof(BuildJob) && (Object)s.currentJob.JobProvider == this);
+
         if (survivorController == null) return;
 
         survivorController.StopCurrentJob();

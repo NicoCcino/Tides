@@ -267,6 +267,22 @@ PrefabInstance:
       propertyPath: 'targetRenderers.Array.data[0]'
       value: 
       objectReference: {fileID: 6155068457853118537}
+    - target: {fileID: 5747312858424288323, guid: 506d1a1a522328b48883573d291a1925, type: 3}
+      propertyPath: scaleCurve.m_Curve.Array.data[0].time
+      value: 0.00063636154
+      objectReference: {fileID: 0}
+    - target: {fileID: 5747312858424288323, guid: 506d1a1a522328b48883573d291a1925, type: 3}
+      propertyPath: scaleCurve.m_Curve.Array.data[1].time
+      value: 0.9995242
+      objectReference: {fileID: 0}
+    - target: {fileID: 5747312858424288323, guid: 506d1a1a522328b48883573d291a1925, type: 3}
+      propertyPath: scaleCurve.m_Curve.Array.data[0].value
+      value: 0.9996503
+      objectReference: {fileID: 0}
+    - target: {fileID: 5747312858424288323, guid: 506d1a1a522328b48883573d291a1925, type: 3}
+      propertyPath: scaleCurve.m_Curve.Array.data[1].value
+      value: 2.0034604
+      objectReference: {fileID: 0}
     - target: {fileID: 5826140016107469056, guid: 506d1a1a522328b48883573d291a1925, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1

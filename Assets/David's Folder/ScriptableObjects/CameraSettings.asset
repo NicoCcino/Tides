@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: CameraSettings
   m_EditorClassIdentifier: Assembly-CSharp::Tides.Camera.CameraSettingsSO
   <Settings>k__BackingField:
-    <PanSpeed>k__BackingField: 1
-    <ZoomSpeed>k__BackingField: 1000
+    <PanSpeed>k__BackingField: 0.5
+    <ZoomSpeed>k__BackingField: 500
     <MinHeight>k__BackingField: 10
     <MaxHeight>k__BackingField: 25
     <DefaultHeight>k__BackingField: 15
