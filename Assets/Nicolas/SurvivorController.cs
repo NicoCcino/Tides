@@ -24,6 +24,7 @@ public class SurvivorController : MonoBehaviour
     public IResource resourceInInventory = null;
 
     [Header("Animation")]
+    public GameObject foodGameObject;
     private static readonly int SpeedHash = Animator.StringToHash("speed");
     private static readonly int GatherHash = Animator.StringToHash("gather");
 
@@ -37,6 +38,7 @@ public class SurvivorController : MonoBehaviour
     public AudioClip GatherClip;
     public AudioClip BuildClip;
     public AudioClip DieClip;
+    public AudioClip EatClip;
 
     public void Awake()
     {
@@ -139,5 +141,24 @@ public class SurvivorController : MonoBehaviour
         float staminaPercentage = agent.speed / maxSpeed;
         // Placeholder for actual stamina logic
         return staminaPercentage;
+    }
+
+    public void ShowFood()
+    {
+        foodGameObject.SetActive(true);
+    }
+    public void HideFood()
+    {
+        foodGameObject.SetActive(false);
+    }
+
+    public void PlayEatSound()
+    {
+        if (AudioSource != null && EatClip != null)
+        {
+            AudioSource.clip = EatClip;
+            AudioSource.loop = false;
+            AudioSource.Play();
+        }
     }
 }

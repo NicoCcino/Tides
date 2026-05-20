@@ -67,7 +67,7 @@ public class TidesManager : Singleton<TidesManager>
         if (currentTide == TideState.Low)
         {
             currentTide = TideState.Rising;
-            // Additional logic for rising tide
+            // Additional logic when starting rising tide
 
             Quaternion randomRotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
             waveRandomOrient.rotation = randomRotation;
@@ -82,7 +82,7 @@ public class TidesManager : Singleton<TidesManager>
         else if (currentTide == TideState.Rising)
         {
             currentTide = TideState.High;
-            // Additional logic for high tide
+            // Additional logic when starting high tide
             UpdateWaterNavBlocker(setWaveShaderVariables.waveHeight);
 
             tideChangeInterval = tideDurationHigh;
@@ -95,14 +95,14 @@ public class TidesManager : Singleton<TidesManager>
                 }
                 else
                 {
-                    //TODO : Survivor eat 
+                    survivor.survivorStateManager.ChangeState(ESurvivorState.Eating);
                 }
             }
         }
         else if (currentTide == TideState.High)
         {
             currentTide = TideState.Lowering;
-            // Additional logic for lowering tide
+            // Additional logic when starting lowering tide
             waveAnimator.SetBool("GoingUp", false);
             Debug.Log("restHeight set to " + tideCyclesSO.tideCycles[currentCycleIndex].RestHeight);
             setWaveShaderVariables.restHeight = tideCyclesSO.tideCycles[currentCycleIndex].RestHeight;
@@ -115,7 +115,7 @@ public class TidesManager : Singleton<TidesManager>
         else if (currentTide == TideState.Lowering)
         {
             currentTide = TideState.Low;
-            // Additional logic for low tide
+            // Additional logic when starting low tide
 
             // cycle index is increased when the tide is low.
             currentCycleIndex++;
