@@ -77,7 +77,7 @@ public class TidesManager : Singleton<TidesManager>
             setWaveShaderVariables.waveHeight = tideCyclesSO.tideCycles[currentCycleIndex].WaveHeight;
             tideChangeInterval = tideDurationRising;
 
-            CameraShake.Instance.ShakeCamera(tideDurationRising, 3);
+            CameraShake.Instance.ShakeCamera(tideDurationRising, 1.5f);
         }
         else if (currentTide == TideState.Rising)
         {

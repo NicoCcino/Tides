@@ -14,24 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TideCyclesSO
   <tideCycles>k__BackingField:
   - cycleNumber: 0
-    tideCoefficient: 1
+    tideCoefficient: 3
   - cycleNumber: 1
-    tideCoefficient: 1
+    tideCoefficient: 2
   - cycleNumber: 2
     tideCoefficient: 2
   - cycleNumber: 3
-    tideCoefficient: 1
-  - cycleNumber: 4
     tideCoefficient: 3
+  - cycleNumber: 4
+    tideCoefficient: 1
   - cycleNumber: 5
-    tideCoefficient: 2
+    tideCoefficient: 3
   - cycleNumber: 6
-    tideCoefficient: 4
+    tideCoefficient: 2
   - cycleNumber: 7
     tideCoefficient: 3
   - cycleNumber: 8
-    tideCoefficient: 4
+    tideCoefficient: 3
   - cycleNumber: 9
-    tideCoefficient: 5
+    tideCoefficient: 2
   - cycleNumber: 10
-    tideCoefficient: 6
+    tideCoefficient: 4
