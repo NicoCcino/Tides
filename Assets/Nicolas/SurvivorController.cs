@@ -158,7 +158,7 @@ public class SurvivorController : MonoBehaviour
         {
             AudioSource.clip = EatClip;
             AudioSource.loop = false;
-            AudioSource.Play();
+            AudioSource.PlayOneShot(EatClip, 0.5f);
         }
     }
 }

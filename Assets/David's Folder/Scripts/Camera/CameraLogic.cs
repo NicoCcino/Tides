@@ -25,12 +25,27 @@ namespace Tides.Camera
 
         public void CalculateNextState(ICameraInput input, float deltaTime)
         {
+            float screenScale = 1080f / Screen.height;
+
             // Panning
             if (input.IsPanning)
             {
-                // Restored the 0.5f scaling and deltaTime from your original SimpleCameraController
-                float speedMultiplier = currentHeight * settings.PanSpeed * 0.5f * deltaTime;
+                float panSpeed = input.IsTouch ? settings.MobilePanSpeed : settings.PanSpeed;
+                // Removed deltaTime because PanDelta is already a per-frame delta.
+                // Added screenScale for resolution consistency.
+                float speedMultiplier = currentHeight * panSpeed * 0.01f * screenScale;
                 Vector3 moveDelta = new Vector3(-input.PanDelta.x, 0, -input.PanDelta.y) * speedMultiplier;
+                targetPosition += moveDelta;
+
+                ApplyBounds();
+            }
+
+            // Edge Scrolling
+            if (input.EdgeScrollDelta != Vector2.zero)
+            {
+                // Edge scroll is speed-based, so it requires deltaTime.
+                float speedMultiplier = currentHeight * settings.EdgeScrollSpeed * 0.1f * deltaTime;
+                Vector3 moveDelta = new Vector3(input.EdgeScrollDelta.x, 0, input.EdgeScrollDelta.y) * speedMultiplier;
                 targetPosition += moveDelta;
 
                 ApplyBounds();
@@ -39,8 +54,9 @@ namespace Tides.Camera
             // Zooming
             if (input.IsZooming)
             {
-                // Restored the 0.1f scaling and deltaTime from your original SimpleCameraController
-                currentHeight -= input.ZoomDelta * settings.ZoomSpeed * 0.1f * deltaTime;
+                float zoomSpeed = input.IsTouch ? settings.MobileZoomSpeed : settings.ZoomSpeed;
+                // Removed deltaTime because ZoomDelta is already a per-frame delta.
+                currentHeight -= input.ZoomDelta * zoomSpeed * 0.001f * screenScale;
                 currentHeight = Mathf.Clamp(currentHeight, settings.MinHeight, settings.MaxHeight);
                 targetPosition.y = currentHeight;
             }

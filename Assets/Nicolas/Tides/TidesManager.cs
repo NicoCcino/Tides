@@ -51,6 +51,7 @@ public class TidesManager : Singleton<TidesManager>
     // Update is called once per frame
     void Update()
     {
+        if (IntroCutscene.Instance.stopped == false) return;
         tideTimer += Time.deltaTime;
 
         if (tideTimer >= tideChangeInterval)

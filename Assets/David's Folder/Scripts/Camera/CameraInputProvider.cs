@@ -7,17 +7,21 @@ namespace Tides.Camera
 {
     public class CameraInputProvider : ICameraInput
     {
+        private readonly CameraSettings settings;
         private bool isDragging;
 
         public Vector2 PanDelta { get; private set; }
         public float ZoomDelta { get; private set; }
+        public Vector2 EdgeScrollDelta { get; private set; }
 
         // Now checks for exactly 1 active touch to count as touch-panning
         public bool IsPanning => isDragging || Touch.activeTouches.Count == 1;
         public bool IsZooming { get; private set; }
+        public bool IsTouch { get; private set; }
 
-        public CameraInputProvider()
+        public CameraInputProvider(CameraSettings settings)
         {
+            this.settings = settings;
             // EnhancedTouch must be enabled before it can track active touches
             if (!EnhancedTouchSupport.enabled)
             {
@@ -29,6 +33,15 @@ namespace Tides.Camera
         {
             HandleMouseInput();
             HandleTouchInput();
+            
+            if (!IsTouch && settings.UseEdgeScrolling)
+            {
+                HandleEdgeScrolling();
+            }
+            else
+            {
+                EdgeScrollDelta = Vector2.zero;
+            }
         }
 
         private void HandleMouseInput()
@@ -41,6 +54,7 @@ namespace Tides.Camera
             if (isDragging)
             {
                 PanDelta = mouse.delta.ReadValue();
+                IsTouch = false;
             }
             else
             {
@@ -48,15 +62,26 @@ namespace Tides.Camera
             }
 
             // Zoom
-            ZoomDelta = mouse.scroll.ReadValue().y;
-            IsZooming = Mathf.Abs(ZoomDelta) > 0.001f;
+            float scroll = mouse.scroll.ReadValue().y;
+            if (Mathf.Abs(scroll) > 0.001f)
+            {
+                ZoomDelta = scroll;
+                IsZooming = true;
+                IsTouch = false;
+            }
+            else if (!IsTouch)
+            {
+                ZoomDelta = 0;
+                IsZooming = false;
+            }
         }
 
         private void HandleTouchInput()
         {
             // If there are no active touches on the screen, exit early 
-            // so we don't accidentally overwrite the mouse inputs.
             if (Touch.activeTouches.Count == 0) return;
+
+            IsTouch = true;
 
             if (Touch.activeTouches.Count == 1)
             {
@@ -83,6 +108,23 @@ namespace Tides.Camera
                 IsZooming = true;
                 PanDelta = Vector2.zero;
             }
+        }
+
+        private void HandleEdgeScrolling()
+        {
+            var mouse = Mouse.current;
+            if (mouse == null) return;
+
+            Vector2 mousePos = mouse.position.ReadValue();
+            Vector3 delta = Vector2.zero;
+
+            if (mousePos.x < settings.EdgeScrollSize) delta.x = -1;
+            else if (mousePos.x > Screen.width - settings.EdgeScrollSize) delta.x = 1;
+
+            if (mousePos.y < settings.EdgeScrollSize) delta.y = -1;
+            else if (mousePos.y > Screen.height - settings.EdgeScrollSize) delta.y = 1;
+
+            EdgeScrollDelta = delta;
         }
     }
 }

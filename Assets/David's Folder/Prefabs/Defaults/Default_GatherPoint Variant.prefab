@@ -1155,8 +1155,8 @@ MonoBehaviour:
   targetTransform: {fileID: 0}
   minDistance: 5
   maxDistance: 20
-  minScale: 0.7
-  maxScale: 1.5
+  minScale: 0.8
+  maxScale: 1.9
 --- !u!114 &3900616218284987127
 MonoBehaviour:
   m_ObjectHideFlags: 0

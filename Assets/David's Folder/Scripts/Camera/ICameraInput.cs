@@ -6,7 +6,9 @@ namespace Tides.Camera
     {
         Vector2 PanDelta { get; }
         float ZoomDelta { get; }
+        Vector2 EdgeScrollDelta { get; }
         bool IsPanning { get; }
         bool IsZooming { get; }
+        bool IsTouch { get; }
     }
 }

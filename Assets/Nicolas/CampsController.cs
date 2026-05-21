@@ -34,7 +34,7 @@ public class CampsController : Singleton<CampsController>
         Vector3 survivorPosition = survivor.transform.position;
 
         int nextWaveHeight = TidesManager.Instance.tideCyclesSO.tideCycles[TidesManager.Instance.currentCycleIndex].WaveHeight;
-        CampController[] safeCamps = Camps.Where(c => c.transform.position.y > nextWaveHeight && c.IsAvailable).ToArray();
+        CampController[] safeCamps = Camps.Where(c => c.transform.position.y > nextWaveHeight + 0.1f && c.IsAvailable).ToArray();
         if (safeCamps.Length == 0)
         {
             foreach (CampController camp in Camps)

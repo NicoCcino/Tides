@@ -15,6 +15,11 @@ MonoBehaviour:
   <Settings>k__BackingField:
     <PanSpeed>k__BackingField: 0.1
     <ZoomSpeed>k__BackingField: 500
+    <MobilePanSpeed>k__BackingField: 0.1
+    <MobileZoomSpeed>k__BackingField: 50
+    <UseEdgeScrolling>k__BackingField: 1
+    <EdgeScrollSpeed>k__BackingField: 10
+    <EdgeScrollSize>k__BackingField: 10
     <MinHeight>k__BackingField: 10
     <MaxHeight>k__BackingField: 25
     <DefaultHeight>k__BackingField: 15

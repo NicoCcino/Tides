@@ -20,10 +20,15 @@ namespace Tides.Camera
             }
 
             cameraTransform = transform;
-            inputProvider = new CameraInputProvider();
+            inputProvider = new CameraInputProvider(SettingsAsset.Settings);
             logic = new CameraLogic(SettingsAsset.Settings, cameraTransform.position);
         }
+        private void OnEnable()
+        {
+            if (!IntroCutscene.Instance.hasBeenPlayed)
+                enabled = false;
 
+        }
         private void Update()
         {
             inputProvider.Update();
@@ -38,7 +43,7 @@ namespace Tides.Camera
             if (SettingsAsset == null || SettingsAsset.Settings == null) return;
 
             Gizmos.color = Color.cyan;
-            
+
             Vector2 min = SettingsAsset.Settings.MinBounds;
             Vector2 max = SettingsAsset.Settings.MaxBounds;
 
